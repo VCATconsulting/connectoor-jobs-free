@@ -1,0 +1,572 @@
+# Copyright (C) 2024 VCAT Consulting GmbH - Team WordPress
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Connectoor Jobs Free 1.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/connectoor-jobs-free\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-10-25T11:15:23+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: connectoor-jobs-free\n"
+
+#. Plugin Name of the plugin
+#: connectoor-jobs-free.php
+msgid "Connectoor Jobs Free"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: connectoor-jobs-free.php
+msgid "https://github.com/VCATconsulting/connectoor-jobs-free"
+msgstr ""
+
+#. Description of the plugin
+#: connectoor-jobs-free.php
+msgid "Free plugin for creating jobs in WordPress"
+msgstr ""
+
+#. Author of the plugin
+#: connectoor-jobs-free.php
+msgid "VCAT Consulting GmbH - Team WordPress"
+msgstr ""
+
+#. Author URI of the plugin
+#: connectoor-jobs-free.php
+msgid "https://www.vcat.de"
+msgstr ""
+
+#: connectoor-jobs-free.php:75
+msgid "Connectoor Jobs requires PHP version 7.4 or higher to function properly. Please upgrade PHP or deactivate Connectoor Jobs."
+msgstr ""
+
+#: connectoor-jobs-free.php:84
+msgid "Connectoor Jobs is missing the Composer autoloader file. Please run `composer install --no-dev -o` in the root folder of the plugin or use a release version including the `vendor` folder."
+msgstr ""
+
+#. translators: %1$s: admin url link, %2$s: class string, %3$d: number of manually added jobs.
+#: lib/Helpers/AddQuickLink.php:99
+msgid "<a href=\"%1$s\" class=\"%2$s\">Manually jobs (%3$d)</a>"
+msgstr ""
+
+#: lib/Helpers/PredefinedPattern.php:30
+msgid "Apply Button"
+msgstr ""
+
+#: lib/Helpers/PredefinedPattern.php:31
+msgctxt "Block pattern description"
+msgid "Add a pre defined template for the apply button."
+msgstr ""
+
+#: lib/Helpers/PredefinedPattern.php:44
+msgid "Connectoor Jobs Query Loop"
+msgstr ""
+
+#: lib/Helpers/PredefinedPattern.php:45
+msgctxt "Block pattern description"
+msgid "Displays a list of Jobs with meta fields and search"
+msgstr ""
+
+#: lib/Helpers/PredefinedPattern.php:85
+msgid "Connectoor"
+msgstr ""
+
+#: lib/Helpers/SearchAndBlocks.php:119
+#: lib/Helpers/SearchAndBlocks.php:159
+msgid "Search Jobs..."
+msgstr ""
+
+#: lib/Helpers/SearchAndBlocks.php:436
+#: build/frontend.js:188
+#: build/frontend.js:89
+msgid "Now"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:31
+#: lib/PostTypes/ConnectoorJobs.php:55
+msgid "Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:32
+msgid "Connectoor Job"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:33
+msgid "All Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:34
+msgid "Connectoor Jobs Archives"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:35
+msgid "Connectoor Jobs Attributes"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:36
+msgid "Insert into Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:37
+msgid "Uploaded to this Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:38
+msgctxt "connectoor-jobs-free"
+msgid "Featured Image"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:39
+msgctxt "connectoor-jobs-free"
+msgid "Set featured image"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:40
+msgctxt "connectoor-jobs-free"
+msgid "Remove featured image"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:41
+msgctxt "connectoor-jobs-free"
+msgid "Use as featured image"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:42
+msgid "Filter Connectoor Jobs list"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:43
+msgid "Connectoor Jobs list navigation"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:44
+msgid "Connectoor Jobs list"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:45
+msgid "New Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:46
+msgid "Add New"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:47
+msgid "Add New Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:48
+msgid "Edit Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:49
+#: lib/PostTypes/ConnectoorJobs.php:50
+msgid "View Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:51
+msgid "Search Connectoor Jobs"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:52
+msgid "No Connectoor Jobs found"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:53
+msgid "No Connectoor Jobs found in trash"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:54
+msgid "Parent Connectoor Jobs:"
+msgstr ""
+
+#. translators: %s: post permalink
+#: lib/PostTypes/ConnectoorJobs.php:103
+msgid "Connectoor Jobs updated. <a target=\"_blank\" href=\"%s\">View Connectoor Jobs</a>"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:104
+msgid "Custom field updated."
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:105
+msgid "Custom field deleted."
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:106
+msgid "Connectoor Jobs updated."
+msgstr ""
+
+#. translators: %s: date and time of the revision
+#: lib/PostTypes/ConnectoorJobs.php:108
+msgid "Connectoor Jobs restored to revision from %s"
+msgstr ""
+
+#. translators: %s: post permalink
+#: lib/PostTypes/ConnectoorJobs.php:111
+msgid "Connectoor Jobs published. <a href=\"%s\">View Connectoor Jobs</a>"
+msgstr ""
+
+#: lib/PostTypes/ConnectoorJobs.php:112
+msgid "Connectoor Jobs saved."
+msgstr ""
+
+#. translators: %s: post permalink
+#: lib/PostTypes/ConnectoorJobs.php:114
+msgid "Connectoor Jobs submitted. <a target=\"_blank\" href=\"%s\">Preview Connectoor Jobs</a>"
+msgstr ""
+
+#. translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink
+#: lib/PostTypes/ConnectoorJobs.php:116
+msgid "Connectoor Jobs scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview Connectoor Jobs</a>"
+msgstr ""
+
+#. translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink
+#: lib/PostTypes/ConnectoorJobs.php:116
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#. translators: %s: post permalink
+#: lib/PostTypes/ConnectoorJobs.php:118
+msgid "Connectoor Jobs draft updated. <a target=\"_blank\" href=\"%s\">Preview Connectoor Jobs</a>"
+msgstr ""
+
+#. translators: %s: Number of questions.
+#: lib/PostTypes/ConnectoorJobs.php:134
+msgid "%s Connectoor Jobs updated."
+msgid_plural "%s Connectoor Jobs updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/PostTypes/ConnectoorJobs.php:135
+msgid "1 Connectoor Job not updated, somebody is editing it."
+msgstr ""
+
+#. translators: %s: Number of connectoor Jobs.
+#: lib/PostTypes/ConnectoorJobs.php:137
+msgid "%s Connectoor Jobs not updated, somebody is editing it."
+msgid_plural "%s Connectoor Jobs not updated, somebody is editing them."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: Number of connectoor Jobs.
+#: lib/PostTypes/ConnectoorJobs.php:139
+msgid "%s Connectoor Jobs permanently deleted."
+msgid_plural "%s Connectoor Jobs permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: Number of connectoor Jobs.
+#: lib/PostTypes/ConnectoorJobs.php:141
+msgid "%s Connectoor Jobs moved to the Trash."
+msgid_plural "%s Connectoor Jobs moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: Number of connectoor Jobs.
+#: lib/PostTypes/ConnectoorJobs.php:143
+msgid "%s Connectoor Jobs restored from the Trash."
+msgid_plural "%s Connectoor Jobs restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/Settings/Settings.php:50
+#: lib/Settings/Settings.php:51
+msgid "Connectoor Jobs Settings"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:45
+#: lib/Taxonomies/EmploymentType.php:62
+msgid "Job Employment Types"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:46
+msgctxt "taxonomy general name"
+msgid "Job Employment Type"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:47
+msgid "Search Job Employment Types"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:48
+msgid "Popular Job Employment Types"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:49
+msgid "All Job Employment Types"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:50
+msgid "Parent Job Employment Type"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:51
+msgid "Parent Job Employment Type:"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:52
+msgid "Edit Job Employment Type"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:53
+msgid "Update Job Employment Type"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:54
+msgid "View Job Employment Type"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:55
+msgid "Add New Job Employment Type"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:56
+msgid "New Job Employment Type"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:57
+msgid "Separate Job Employment Types with commas"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:58
+msgid "Add or remove Job Employment Types"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:59
+msgid "Choose from the most used Job Employment Types"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:60
+msgid "No Job Employment Types found."
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:61
+msgid "No Job Employment Types"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:63
+msgid "Job Employment Types list navigation"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:64
+msgid "Job Employment Types list"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:65
+msgctxt "Employment Type"
+msgid "Most Used"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:66
+msgid "&larr; Back to Job Employment Types"
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:84
+msgid "Job Employment Type added."
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:85
+msgid "Job Employment Type deleted."
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:86
+msgid "Job Employment Type updated."
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:87
+msgid "Job Employment Type not added."
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:88
+msgid "Job Employment Type not updated."
+msgstr ""
+
+#: lib/Taxonomies/EmploymentType.php:89
+msgid "Job Employment Types deleted."
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:45
+#: lib/Taxonomies/JobCategory.php:62
+msgid "Job Categories"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:46
+msgctxt "taxonomy general name"
+msgid "Job Category"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:47
+msgid "Search Job Categories"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:48
+msgid "Popular Job Categories"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:49
+msgid "All Job Categories"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:50
+msgid "Parent Job Category"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:51
+msgid "Parent Job Category:"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:52
+msgid "Edit Job Category"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:53
+msgid "Update Job Category"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:54
+msgid "View Job Category"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:55
+msgid "Add New Job Category"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:56
+msgid "New Job Category"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:57
+msgid "Separate Job Categories with commas"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:58
+msgid "Add or remove Job Categories"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:59
+msgid "Choose from the most used Job Categories"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:60
+msgid "No Job Categories found."
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:61
+msgid "No Job Categories"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:63
+msgid "Job Categories list navigation"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:64
+msgid "Job Categories list"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:65
+msgctxt "Job Category"
+msgid "Most Used"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:66
+msgid "&larr; Back to Job Categories"
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:84
+msgid "Job Category added."
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:85
+msgid "Job Category deleted."
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:86
+msgid "Job Category updated."
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:87
+msgid "Job Category not added."
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:88
+msgid "Job Category not updated."
+msgstr ""
+
+#: lib/Taxonomies/JobCategory.php:89
+msgid "Job Categories deleted."
+msgstr ""
+
+#: build/admin.js:201
+#: build/admin.js:136
+msgid "Connectoor Jobs Free - Settings"
+msgstr ""
+
+#: build/admin.js:206
+#: build/admin.js:143
+msgid "Connectoor Jobs Pro - Upgrade"
+msgstr ""
+
+#. translators: %s: URL to the Connectoor Jobs Pro page.
+#: build/admin.js:214
+#: build/admin.js:154
+msgid "Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href=\"%s\">Find out more.</a>"
+msgstr ""
+
+#: build/admin.js:217
+#: build/admin.js:161
+msgid "Branding Settings"
+msgstr ""
+
+#: build/admin.js:221
+#: build/admin.js:168
+msgid "Here you can add specific settings for your brand."
+msgstr ""
+
+#: build/admin.js:223
+#: build/admin.js:174
+msgid "Select a branding color"
+msgstr ""
+
+#: build/admin.js:224
+#: build/admin.js:175
+msgid "Branding Color"
+msgstr ""
+
+#: build/admin.js:235
+#: build/admin.js:193
+msgid "Save Data"
+msgstr ""
+
+#: build/admin.js:239
+#: build/admin.js:201
+msgid "Settings saved"
+msgstr ""
+
+#: build/index.js:35
+#: build/index.js:16
+msgid "Search jobs.."
+msgstr ""
+
+#: build/index.js:71
+#: build/index.js:37
+msgid "Job Search"
+msgstr ""
+
+#: build/index.js:203
+#: build/index.js:120
+msgid "Job Information"
+msgstr ""
+
+#: build/blocks/job-search/block.json
+msgctxt "block title"
+msgid "Search Field"
+msgstr ""
+
+#: build/blocks/meta-field/block.json
+msgctxt "block title"
+msgid "Meta Field"
+msgstr ""

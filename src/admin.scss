@@ -1,0 +1,72 @@
+#connectoor-jobs-settings {
+
+	.components-placeholder {
+		background: #f1f1f1;
+	}
+
+	.connectoor-jobs__header {
+		background-color: #ffffff;
+		box-shadow: 0 1px 0 rgba(213, 213, 213, .5), 0 1px 2px #eeeeee;
+		margin-left: -2em;
+		padding: 20px 10px;
+
+		.connectoor-jobs__container {
+			margin: 0 auto;
+			max-width: 750px;
+
+			.connectoor-jobs__title {
+				align-items: center;
+				display: flex;
+				justify-content: center;
+
+				.dashicon {
+					color: #757575;
+				}
+			}
+		}
+	}
+
+	.connectoor-jobs__main {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 750px;
+
+		.components-panel {
+			background: none;
+			border: none;
+		}
+
+		.components-panel__body {
+			background: #ffffff;
+			border: 1px solid #e2e4e7;
+			margin: 1rem 0;
+		}
+	}
+
+	.components-base-control__help {
+		margin-top: .5rem;
+	}
+
+	.components-panel__row {
+		> div {
+			flex-grow: 1;
+			margin-right: 1rem;
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.connectoor-jobs.components-notice {
+		margin: 5px 0;
+	}
+
+	.api-description + div {
+		padding-top: 20px;
+	}
+
+	.branding-color {
+		background-color: var(--connectoor-jobs-branding-color);
+	}
+}

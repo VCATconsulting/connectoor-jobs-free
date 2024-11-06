@@ -1,0 +1,11 @@
+{
+  "name": "connectoor-jobs/job-search",
+  "title": "Search Field",
+  "category": "connectoor-jobs",
+  "attributes":  { },
+  "supports": {
+    "html": false
+  },
+  "editorStyle": "wp-block-connectoor-jobs-job-search-editor",
+  "style": "wp-block-connectoor-jobs-job-search"
+}

@@ -1,0 +1,650 @@
+# Copyright (C) 2024 VCAT Consulting GmbH - Team WordPress
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Connectoor Jobs Free 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/connectoor-jobs-"
+"free\n"
+"POT-Creation-Date: 2024-10-25T11:15:23+00:00\n"
+"PO-Revision-Date: 2024-10-25 13:16+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: connectoor-jobs\n"
+
+#. Plugin Name of the plugin
+#: connectoor-jobs-free.php
+msgid "Connectoor Jobs Free"
+msgstr "Connectoor Jobs Free"
+
+#. Plugin URI of the plugin
+#: connectoor-jobs-free.php
+msgid "https://github.com/VCATconsulting/connectoor-jobs-free"
+msgstr "https://github.com/VCATconsulting/connectoor-jobs-free"
+
+#. Description of the plugin
+#: connectoor-jobs-free.php
+msgid "Free plugin for creating jobs in WordPress"
+msgstr "Kostenloses Plugin für die Erstellung von Jobs in WordPress"
+
+#. Author of the plugin
+#: connectoor-jobs-free.php
+msgid "VCAT Consulting GmbH - Team WordPress"
+msgstr "VCAT Consulting GmbH - Team WordPress"
+
+#. Author URI of the plugin
+#: connectoor-jobs-free.php
+msgid "https://www.vcat.de"
+msgstr "https://www.vcat.de"
+
+#: connectoor-jobs-free.php:75
+msgid ""
+"Connectoor Jobs requires PHP version 7.4 or higher to function properly. "
+"Please upgrade PHP or deactivate Connectoor Jobs."
+msgstr ""
+"Connectoor Jobs benötigt PHP Version 7.4 oder höher, um richtig zu "
+"funktionieren. Bitte aktualisiere PHP oder deaktiviere Connectoor Jobs."
+
+#: connectoor-jobs-free.php:84
+msgid ""
+"Connectoor Jobs is missing the Composer autoloader file. Please run "
+"`composer install --no-dev -o` in the root folder of the plugin or use a "
+"release version including the `vendor` folder."
+msgstr ""
+"Connectoor Jobs fehlt die Composer Autoloader-Datei. Bitte führe `composer "
+"install --no-dev -o` im Stammverzeichnis des Plugins aus oder verwende eine "
+"Release-Version, die den Ordner `vendor` enthält."
+
+#. translators: %1$s: admin url link, %2$s: class string, %3$d: number of manually added jobs.
+#: lib/Helpers/AddQuickLink.php:99
+msgid "<a href=\"%1$s\" class=\"%2$s\">Manually jobs (%3$d)</a>"
+msgstr "<a href=\"%1$s\" class=\"%2$s\">Manuelle Stellen (%3$d)</a>"
+
+#: lib/Helpers/PredefinedPattern.php:30
+msgid "Apply Button"
+msgstr "Bewerben Button"
+
+#: lib/Helpers/PredefinedPattern.php:31
+msgctxt "Block pattern description"
+msgid "Add a pre defined template for the apply button."
+msgstr "Füge eine vordefinierte Vorlage für den \"Bewerben\" - Button hinzu."
+
+#: lib/Helpers/PredefinedPattern.php:44
+msgid "Connectoor Jobs Query Loop"
+msgstr "Connectoor Jobs Abfrage"
+
+#: lib/Helpers/PredefinedPattern.php:45
+msgctxt "Block pattern description"
+msgid "Displays a list of Jobs with meta fields and search"
+msgstr "Zeigt eine Liste von Jobs mit Meta-Feldern und Suche an"
+
+#: lib/Helpers/PredefinedPattern.php:85
+msgid "Connectoor"
+msgstr "Connectoor"
+
+#: lib/Helpers/SearchAndBlocks.php:119 lib/Helpers/SearchAndBlocks.php:159
+msgid "Search Jobs..."
+msgstr "Jobs suchen..."
+
+#: lib/Helpers/SearchAndBlocks.php:436 build/frontend.js:188
+#: build/frontend.js:89
+msgid "Now"
+msgstr "ab sofort"
+
+#: lib/PostTypes/ConnectoorJobs.php:31 lib/PostTypes/ConnectoorJobs.php:55
+msgid "Connectoor Jobs"
+msgstr "Connectoor Jobs"
+
+#: lib/PostTypes/ConnectoorJobs.php:32
+msgid "Connectoor Job"
+msgstr "Connectoor Job"
+
+#: lib/PostTypes/ConnectoorJobs.php:33
+msgid "All Connectoor Jobs"
+msgstr "Alle Connectoor Jobs"
+
+#: lib/PostTypes/ConnectoorJobs.php:34
+msgid "Connectoor Jobs Archives"
+msgstr "Connectoor Jobs Archiv"
+
+#: lib/PostTypes/ConnectoorJobs.php:35
+msgid "Connectoor Jobs Attributes"
+msgstr "Connectoor Jobs Attribute"
+
+#: lib/PostTypes/ConnectoorJobs.php:36
+msgid "Insert into Connectoor Jobs"
+msgstr "In Connectoor Jobs einfügen"
+
+#: lib/PostTypes/ConnectoorJobs.php:37
+msgid "Uploaded to this Connectoor Jobs"
+msgstr "Hochgeladen zu diesem Connectoor Jobs"
+
+#: lib/PostTypes/ConnectoorJobs.php:38
+msgctxt "connectoor-jobs-free"
+msgid "Featured Image"
+msgstr "Beitragsbild"
+
+#: lib/PostTypes/ConnectoorJobs.php:39
+msgctxt "connectoor-jobs-free"
+msgid "Set featured image"
+msgstr "Beitragsbild festlegen"
+
+#: lib/PostTypes/ConnectoorJobs.php:40
+msgctxt "connectoor-jobs-free"
+msgid "Remove featured image"
+msgstr "Beitragsbild entfernen"
+
+#: lib/PostTypes/ConnectoorJobs.php:41
+msgctxt "connectoor-jobs-free"
+msgid "Use as featured image"
+msgstr "Als Beitragsbild verwenden"
+
+#: lib/PostTypes/ConnectoorJobs.php:42
+msgid "Filter Connectoor Jobs list"
+msgstr "Filter Connectoor Jobs Liste"
+
+#: lib/PostTypes/ConnectoorJobs.php:43
+msgid "Connectoor Jobs list navigation"
+msgstr "Connectoor Jobs Listennavigation"
+
+#: lib/PostTypes/ConnectoorJobs.php:44
+msgid "Connectoor Jobs list"
+msgstr "Connectoor Jobs Liste"
+
+#: lib/PostTypes/ConnectoorJobs.php:45
+msgid "New Connectoor Jobs"
+msgstr "Neue Jobs in Connectoor"
+
+#: lib/PostTypes/ConnectoorJobs.php:46
+msgid "Add New"
+msgstr "Neu hinzufügen"
+
+#: lib/PostTypes/ConnectoorJobs.php:47
+msgid "Add New Connectoor Jobs"
+msgstr "Neue Connectoor Jobs hinzufügen"
+
+#: lib/PostTypes/ConnectoorJobs.php:48
+msgid "Edit Connectoor Jobs"
+msgstr "Connectoor Jobs bearbeiten"
+
+#: lib/PostTypes/ConnectoorJobs.php:49 lib/PostTypes/ConnectoorJobs.php:50
+msgid "View Connectoor Jobs"
+msgstr "Connectoor Jobs ansehen"
+
+#: lib/PostTypes/ConnectoorJobs.php:51
+msgid "Search Connectoor Jobs"
+msgstr "Connectoor Jobs suchen"
+
+#: lib/PostTypes/ConnectoorJobs.php:52
+msgid "No Connectoor Jobs found"
+msgstr "Keine Connectoor Jobs gefunden"
+
+#: lib/PostTypes/ConnectoorJobs.php:53
+msgid "No Connectoor Jobs found in trash"
+msgstr "Keine Connectoor Jobs im Papierkorb gefunden"
+
+#: lib/PostTypes/ConnectoorJobs.php:54
+msgid "Parent Connectoor Jobs:"
+msgstr "Eltern Connectoor Jobs:"
+
+#. translators: %s: post permalink
+#: lib/PostTypes/ConnectoorJobs.php:103
+msgid ""
+"Connectoor Jobs updated. <a target=\"_blank\" href=\"%s\">View Connectoor "
+"Jobs</a>"
+msgstr ""
+"Connectoor Jobs aktualisiert. <a target=\"_blank\" href=\"%s\">Connectoor "
+"Jobs ansehen</a>"
+
+#: lib/PostTypes/ConnectoorJobs.php:104
+msgid "Custom field updated."
+msgstr "Benutzerdefiniertes Feld aktualisiert."
+
+#: lib/PostTypes/ConnectoorJobs.php:105
+msgid "Custom field deleted."
+msgstr "Benutzerdefiniertes Feld gelöscht."
+
+#: lib/PostTypes/ConnectoorJobs.php:106
+msgid "Connectoor Jobs updated."
+msgstr "Connectoor Jobs aktualisiert."
+
+#. translators: %s: date and time of the revision
+#: lib/PostTypes/ConnectoorJobs.php:108
+msgid "Connectoor Jobs restored to revision from %s"
+msgstr "Connectoor Jobs wieder in Revision von %s"
+
+#. translators: %s: post permalink
+#: lib/PostTypes/ConnectoorJobs.php:111
+msgid "Connectoor Jobs published. <a href=\"%s\">View Connectoor Jobs</a>"
+msgstr ""
+"Connectoor Jobs veröffentlicht. <a href=\"%s\">Connectoor Jobs ansehen</a>"
+
+#: lib/PostTypes/ConnectoorJobs.php:112
+msgid "Connectoor Jobs saved."
+msgstr "Connectoor Jobs gespeichert."
+
+#. translators: %s: post permalink
+#: lib/PostTypes/ConnectoorJobs.php:114
+msgid ""
+"Connectoor Jobs submitted. <a target=\"_blank\" href=\"%s\">Preview "
+"Connectoor Jobs</a>"
+msgstr ""
+"Connectoor Jobs eingereicht. <a target=\"_blank\" href=\"%s\">Vorschau "
+"Connectoor Jobs</a>"
+
+#. translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink
+#: lib/PostTypes/ConnectoorJobs.php:116
+msgid ""
+"Connectoor Jobs scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" "
+"href=\"%2$s\">Preview Connectoor Jobs</a>"
+msgstr ""
+"Connectoor Jobs geplant für: <strong>%1$s</strong>. <a target=\"_blank\" "
+"href=\"%2$s\">Vorschau Connectoor Jobs</a>"
+
+#. translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink
+#: lib/PostTypes/ConnectoorJobs.php:116
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#. translators: %s: post permalink
+#: lib/PostTypes/ConnectoorJobs.php:118
+msgid ""
+"Connectoor Jobs draft updated. <a target=\"_blank\" href=\"%s\">Preview "
+"Connectoor Jobs</a>"
+msgstr ""
+"Connectoor Jobs Entwurf aktualisiert. <a target=\"_blank\" href=\"%s"
+"\">Vorschau Connectoor Jobs</a>"
+
+#. translators: %s: Number of questions.
+#: lib/PostTypes/ConnectoorJobs.php:134
+msgid "%s Connectoor Jobs updated."
+msgid_plural "%s Connectoor Jobs updated."
+msgstr[0] "%s Connectoor Jobs aktualisiert."
+msgstr[1] "%s connectoor Jobs aktualisiert."
+
+#: lib/PostTypes/ConnectoorJobs.php:135
+msgid "1 Connectoor Job not updated, somebody is editing it."
+msgstr "%s Connectoor Jobs nicht aktualisiert, jemand bearbeitet sie."
+
+#. translators: %s: Number of connectoor Jobs.
+#: lib/PostTypes/ConnectoorJobs.php:137
+msgid "%s Connectoor Jobs not updated, somebody is editing it."
+msgid_plural "%s Connectoor Jobs not updated, somebody is editing them."
+msgstr[0] "%s Connectoor Jobs nicht aktualisiert, jemand bearbeitet sie."
+msgstr[1] "%s Connectoor Jobs nicht aktualisiert, jemand bearbeitet sie."
+
+#. translators: %s: Number of connectoor Jobs.
+#: lib/PostTypes/ConnectoorJobs.php:139
+msgid "%s Connectoor Jobs permanently deleted."
+msgid_plural "%s Connectoor Jobs permanently deleted."
+msgstr[0] "%s Connectoor Jobs endgültig gelöscht."
+msgstr[1] "%s connectoor Jobs endgültig gelöscht."
+
+#. translators: %s: Number of connectoor Jobs.
+#: lib/PostTypes/ConnectoorJobs.php:141
+msgid "%s Connectoor Jobs moved to the Trash."
+msgid_plural "%s Connectoor Jobs moved to the Trash."
+msgstr[0] "%s Connectoor Jobs wurden in den Papierkorb verschoben."
+msgstr[1] "%s connectoor Jobs wurden in den Papierkorb verschoben."
+
+#. translators: %s: Number of connectoor Jobs.
+#: lib/PostTypes/ConnectoorJobs.php:143
+msgid "%s Connectoor Jobs restored from the Trash."
+msgid_plural "%s Connectoor Jobs restored from the Trash."
+msgstr[0] "%s Connectoor Jobs aus dem Papierkorb wiederhergestellt."
+msgstr[1] "%s connectoor Jobs aus dem Papierkorb wiederhergestellt."
+
+#: lib/Settings/Settings.php:50 lib/Settings/Settings.php:51
+msgid "Connectoor Jobs Settings"
+msgstr "Connectoor Jobs Einstellungen"
+
+#: lib/Taxonomies/EmploymentType.php:45 lib/Taxonomies/EmploymentType.php:62
+msgid "Job Employment Types"
+msgstr "Job Beschäftigungsarten"
+
+#: lib/Taxonomies/EmploymentType.php:46
+msgctxt "taxonomy general name"
+msgid "Job Employment Type"
+msgstr "Job Beschäftigungsart"
+
+#: lib/Taxonomies/EmploymentType.php:47
+msgid "Search Job Employment Types"
+msgstr "Suche Beschäftigungsarten"
+
+#: lib/Taxonomies/EmploymentType.php:48
+msgid "Popular Job Employment Types"
+msgstr "Beliebte Job-Beschäftigungsarten"
+
+#: lib/Taxonomies/EmploymentType.php:49
+msgid "All Job Employment Types"
+msgstr "Alle Beschäftigungsarten"
+
+#: lib/Taxonomies/EmploymentType.php:50
+msgid "Parent Job Employment Type"
+msgstr "Elternjob Beschäftigungsart"
+
+#: lib/Taxonomies/EmploymentType.php:51
+msgid "Parent Job Employment Type:"
+msgstr "Elternjob Beschäftigungsart:"
+
+#: lib/Taxonomies/EmploymentType.php:52
+msgid "Edit Job Employment Type"
+msgstr "Job bearbeiten Beschäftigungsart"
+
+#: lib/Taxonomies/EmploymentType.php:53
+msgid "Update Job Employment Type"
+msgstr "Update Job Beschäftigungsart"
+
+#: lib/Taxonomies/EmploymentType.php:54
+msgid "View Job Employment Type"
+msgstr "Job Beschäftigungsart ansehen"
+
+#: lib/Taxonomies/EmploymentType.php:55
+msgid "Add New Job Employment Type"
+msgstr "Neue Beschäftigungsart hinzufügen"
+
+#: lib/Taxonomies/EmploymentType.php:56
+msgid "New Job Employment Type"
+msgstr "Neue Job Beschäftigungsart"
+
+#: lib/Taxonomies/EmploymentType.php:57
+msgid "Separate Job Employment Types with commas"
+msgstr "Trenne die Beschäftigungsarten mit Kommas"
+
+#: lib/Taxonomies/EmploymentType.php:58
+msgid "Add or remove Job Employment Types"
+msgstr "Beschäftigungsarten hinzufügen oder entfernen"
+
+#: lib/Taxonomies/EmploymentType.php:59
+msgid "Choose from the most used Job Employment Types"
+msgstr "Wähle aus den meistgenutzten Beschäftigungsarten"
+
+#: lib/Taxonomies/EmploymentType.php:60
+msgid "No Job Employment Types found."
+msgstr "Keine Beschäftigungsarten gefunden."
+
+#: lib/Taxonomies/EmploymentType.php:61
+msgid "No Job Employment Types"
+msgstr "Keine Job Beschäftigungsart"
+
+#: lib/Taxonomies/EmploymentType.php:63
+msgid "Job Employment Types list navigation"
+msgstr "Job Beschäftigungsarten Liste Navigation"
+
+#: lib/Taxonomies/EmploymentType.php:64
+msgid "Job Employment Types list"
+msgstr "Liste der Beschäftigungsarten"
+
+#: lib/Taxonomies/EmploymentType.php:65
+msgctxt "Employment Type"
+msgid "Most Used"
+msgstr "Meistgenutzt"
+
+#: lib/Taxonomies/EmploymentType.php:66
+msgid "&larr; Back to Job Employment Types"
+msgstr "← Zurück zu Job Beschäftigungsarten"
+
+#: lib/Taxonomies/EmploymentType.php:84
+msgid "Job Employment Type added."
+msgstr "Job Beschäftigungsart hinzugefügt."
+
+#: lib/Taxonomies/EmploymentType.php:85
+msgid "Job Employment Type deleted."
+msgstr "Job Beschäftigungsart gelöscht."
+
+#: lib/Taxonomies/EmploymentType.php:86
+msgid "Job Employment Type updated."
+msgstr "Job Beschäftigungsart aktualisiert."
+
+#: lib/Taxonomies/EmploymentType.php:87
+msgid "Job Employment Type not added."
+msgstr "Job Beschäftigungsart nicht hinzugefügt."
+
+#: lib/Taxonomies/EmploymentType.php:88
+msgid "Job Employment Type not updated."
+msgstr "Job Beschäftigungsart nicht aktualisiert."
+
+#: lib/Taxonomies/EmploymentType.php:89
+msgid "Job Employment Types deleted."
+msgstr "Job Beschäftigungsarten gelöscht."
+
+#: lib/Taxonomies/JobCategory.php:45 lib/Taxonomies/JobCategory.php:62
+msgid "Job Categories"
+msgstr "Job Kategorien"
+
+#: lib/Taxonomies/JobCategory.php:46
+msgctxt "taxonomy general name"
+msgid "Job Category"
+msgstr "Job Kategorie"
+
+#: lib/Taxonomies/JobCategory.php:47
+msgid "Search Job Categories"
+msgstr "Job Kategorien suchen"
+
+#: lib/Taxonomies/JobCategory.php:48
+msgid "Popular Job Categories"
+msgstr "Beliebte Job Kategorien"
+
+#: lib/Taxonomies/JobCategory.php:49
+msgid "All Job Categories"
+msgstr "Alle Job Kategorien"
+
+#: lib/Taxonomies/JobCategory.php:50
+msgid "Parent Job Category"
+msgstr "Übergeordnete Job Kategorie"
+
+#: lib/Taxonomies/JobCategory.php:51
+msgid "Parent Job Category:"
+msgstr "Übergeordnete Job Kategorie:"
+
+#: lib/Taxonomies/JobCategory.php:52
+msgid "Edit Job Category"
+msgstr "Job Kategorie bearbeiten"
+
+#: lib/Taxonomies/JobCategory.php:53
+msgid "Update Job Category"
+msgstr "Job Kategorie aktualisieren"
+
+#: lib/Taxonomies/JobCategory.php:54
+msgid "View Job Category"
+msgstr "Job Kategorie ansehen"
+
+#: lib/Taxonomies/JobCategory.php:55
+msgid "Add New Job Category"
+msgstr "Neue Job Kategorie erstellen"
+
+#: lib/Taxonomies/JobCategory.php:56
+msgid "New Job Category"
+msgstr "Neue Job Kategorie"
+
+#: lib/Taxonomies/JobCategory.php:57
+msgid "Separate Job Categories with commas"
+msgstr "Job Kategorien mit Kommas trennen"
+
+#: lib/Taxonomies/JobCategory.php:58
+msgid "Add or remove Job Categories"
+msgstr "Job Kategorien erstellen oder entfernen"
+
+#: lib/Taxonomies/JobCategory.php:59
+msgid "Choose from the most used Job Categories"
+msgstr "Wählen Sie aus den am häufigsten genutzten Job Kategorien aus"
+
+#: lib/Taxonomies/JobCategory.php:60
+msgid "No Job Categories found."
+msgstr "Keine Job Kategorien gefunden."
+
+#: lib/Taxonomies/JobCategory.php:61
+msgid "No Job Categories"
+msgstr "Keine Job Kategorien"
+
+#: lib/Taxonomies/JobCategory.php:63
+msgid "Job Categories list navigation"
+msgstr "Job Kategorien Liste Navigation"
+
+#: lib/Taxonomies/JobCategory.php:64
+msgid "Job Categories list"
+msgstr "Liste der Job Kategorien"
+
+#: lib/Taxonomies/JobCategory.php:65
+msgctxt "Job Category"
+msgid "Most Used"
+msgstr "Meistgenutzt"
+
+#: lib/Taxonomies/JobCategory.php:66
+msgid "&larr; Back to Job Categories"
+msgstr "← Zurück zu den Job Kategorien"
+
+#: lib/Taxonomies/JobCategory.php:84
+msgid "Job Category added."
+msgstr "Job Kategorie hinzugefügt."
+
+#: lib/Taxonomies/JobCategory.php:85
+msgid "Job Category deleted."
+msgstr "Job Kategorie gelöscht."
+
+#: lib/Taxonomies/JobCategory.php:86
+msgid "Job Category updated."
+msgstr "Job Kategorie aktualisiert."
+
+#: lib/Taxonomies/JobCategory.php:87
+msgid "Job Category not added."
+msgstr "Job Kategorie nicht hinzugefügt."
+
+#: lib/Taxonomies/JobCategory.php:88
+msgid "Job Category not updated."
+msgstr "Job Kategorie nicht aktualisiert."
+
+#: lib/Taxonomies/JobCategory.php:89
+msgid "Job Categories deleted."
+msgstr "Job Kategorien gelöscht."
+
+#: build/admin.js:201 build/admin.js:136
+msgid "Connectoor Jobs Free - Settings"
+msgstr "Connectoor Jobs Free - Einstellungen"
+
+#: build/admin.js:206 build/admin.js:143
+msgid "Connectoor Jobs Pro - Upgrade"
+msgstr "Connectoor Jobs Pro - Upgrade"
+
+#. translators: %s: URL to the Connectoor Jobs Pro page.
+#: build/admin.js:214 build/admin.js:154
+msgid ""
+"Use all the benefits, automatic job advertisements, AI and more in the "
+"<strong>PRO version</strong> and our Connectoor recruiting software. <a href="
+"\"%s\">Find out more.</a>"
+msgstr ""
+"Alle Vorteile, automatische Stellenanzeigen, KI und mehr in der <strong>PRO-"
+"Version</strong> und unserer Connectoor Recruiting-Software nutzen. <a href="
+"\"%s\">Mehr erfahren.</a>"
+
+#: build/admin.js:217 build/admin.js:161
+msgid "Branding Settings"
+msgstr "Branding Einstellungen"
+
+#: build/admin.js:221 build/admin.js:168
+msgid "Here you can add specific settings for your brand."
+msgstr "Hier kannst du spezifische Einstellungen für deine Marke vornehmen."
+
+#: build/admin.js:223 build/admin.js:174
+msgid "Select a branding color"
+msgstr "Wähle eine Marken-Farbe"
+
+#: build/admin.js:224 build/admin.js:175
+msgid "Branding Color"
+msgstr "Marken Farbe"
+
+#: build/admin.js:235 build/admin.js:193
+msgid "Save Data"
+msgstr "Daten speichern"
+
+#: build/admin.js:239 build/admin.js:201
+msgid "Settings saved"
+msgstr "Einstellungen gespeichert"
+
+#: build/index.js:35 build/index.js:16
+msgid "Search jobs.."
+msgstr "Jobs suchen..."
+
+#: build/index.js:71 build/index.js:37
+msgid "Job Search"
+msgstr "Job Suche"
+
+#: build/index.js:203 build/index.js:120
+msgid "Job Information"
+msgstr "Job-Informationen"
+
+#: build/blocks/job-search/block.json
+msgctxt "block title"
+msgid "Search Field"
+msgstr "Suchfeld"
+
+#: build/blocks/meta-field/block.json
+msgctxt "block title"
+msgid "Meta Field"
+msgstr "Meta Feld"
+
+#~ msgid "Meta Field Key"
+#~ msgstr "Metafeld-Schlüssel"
+
+#~ msgid "Referencenumber"
+#~ msgstr "Referenznummer"
+
+#~ msgid "Intern title"
+#~ msgstr "Interne Stellenbezeichnung"
+
+#~ msgid "Begin"
+#~ msgstr "Zu besetzen ab"
+
+#~ msgid "Company"
+#~ msgstr "Firma"
+
+#~ msgid "Sourcename"
+#~ msgstr "Mutterkonzern"
+
+#~ msgid "Location Address"
+#~ msgstr "Einsatzort"
+
+#~ msgid "Postalcode"
+#~ msgstr "Postleitzahl"
+
+#~ msgid "City"
+#~ msgstr "Stadt"
+
+#~ msgid "State"
+#~ msgstr "Bundesland"
+
+#~ msgid "Country"
+#~ msgstr "Land"
+
+#~ msgid "Job URL"
+#~ msgstr "Jobdetailseite URL"
+
+#~ msgid "Apply URL"
+#~ msgstr "Bewerbungsformular URL"
+
+#~ msgid "E-Mail"
+#~ msgstr "E-Mail"
+
+#~ msgid "Deadline Visible"
+#~ msgstr "Bewerbungsfrist sichtbar"
+
+#~ msgid "Deadline"
+#~ msgstr "Bewerbungsfrist (Ende)"
+
+#~ msgid "Jobtype"
+#~ msgstr "Beschäftigungsumfang"
+
+#~ msgid "Employment Duration"
+#~ msgstr "Beschäftigungsdauer"
+
+#~ msgid "Experience"
+#~ msgstr "Erfahrung"
+
+#~ msgctxt "svb_tax_Job Category"
+#~ msgid "Most Used"
+#~ msgstr "Meistgenutzt"
