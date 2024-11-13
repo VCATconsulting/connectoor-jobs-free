@@ -109,6 +109,20 @@ class SearchAndBlocks {
 			}
 		}
 
+		/*
+		 * Include script and set PHP variables
+		 */
+		wp_localize_script(
+			'connectoor-jobs-frontend',
+			'searchVars',
+			[
+				'ajaxUrl'         => admin_url( 'admin-ajax.php' ),
+				'catIds'          => $cat_ids,
+				'placeholderText' => esc_html__( 'Search Jobs...', 'connectoor-jobs-free' ),
+				'readMoreText'    => esc_html__( 'read more', 'connectoor-jobs-free' ),
+			]
+		);
+
 		ob_start();
 		?>
 		<div class="connectoor-jobs-search-field-wrapper">
@@ -120,104 +134,8 @@ class SearchAndBlocks {
 				value="<?php echo esc_attr( $attributes['searchTerm'] ); ?>"/>
 		</div>
 		<div class="wp-block-query-container">
-			<div class="wp-block-query">
-			</div>
+			<div class="wp-block-query"></div>
 		</div>
-		<script type="text/javascript">
-			jQuery( document ).ready( function ( $ ) {
-				let selectedIds = [];
-
-				function initializeSelect2() {
-					$( '#select2-search' ).select2( {
-						ajax: {
-							url: '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',
-							dataType: 'json',
-							delay: 250,
-							data: function ( params ) {
-								return {
-									action: 'connectoor_jobs_search_jobs',
-									q: params.term,
-									categories: <?php echo wp_json_encode( $cat_ids ); ?>
-								};
-							},
-							processResults: function ( data ) {
-								let results = data.map( post => ( {
-									id: post.ID,
-									text: post.post_title
-								} ) );
-
-								// Extract an array of IDs from the results.
-								selectedIds = results.map( result => result.id );
-								return {
-									results: results
-								};
-							},
-							cache: true
-						},
-						minimumInputLength: 1,
-						language: "de",
-						placeholder: "<?php echo esc_html__( 'Search Jobs...', 'connectoor-jobs-free' ); ?>",
-						allowClear: true
-					} ).on( 'select2:select', function ( e ) {
-						let searchTerm = e.params.data.text;
-
-						// Reload the query loop based on the search term.
-						$.ajax( {
-							url: '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',
-							type: 'GET',
-							data: {
-								action: 'connectoor_jobs_search_jobs',
-								q: searchTerm,
-								ids: selectedIds,
-								categories: <?php echo wp_json_encode( $cat_ids ); ?>
-							},
-							success: function ( data ) {
-								var queryLoopContainer = $( '.wp-block-query' ); // Container des Query Loop Blocks
-								queryLoopContainer.empty();
-
-								// Create ul-container to append the results.
-								let ul = $('<ul class="branding-color wp-block-post-template"></ul>');
-								// Add the results.
-								data.forEach( function ( post ) {
-									let li = $(
-										'<li class="connectoor_jobs">' +
-											'<article class="wp-block-group">' +
-												'<div class="wp-block-group">' + post.company + '</div>' +
-												'<h3><a href="' + post.link + '" title="' + post.post_title + '">' + post.post_title + '</a></h3>' +
-												'<div class="search-result-meta">' +
-													'<div>' + post.location + '</div>' +
-													'<div>' + post.job_type + '</div>' +
-													'<div>' + post.time + '</div>' +
-												'</div>' +
-												'<a class="wp-block-read-more" href="' + post.link + '" target="_self"><?php echo esc_html__( 'read more', 'connectoor-jobs-free' ); ?><span class="screen-reader-text">: ' + post.post_title + '</span></a>' +
-											'</article>' +
-										'</li>'
-									);
-
-									ul.append(li);
-								} );
-								// Add ul-container to query loop container.
-								queryLoopContainer.append(ul);
-
-								// Re-initialize Select2 after updating results.
-								initializeSelect2();
-
-								// Make li clickable.
-								$(document).on('click', 'ul.branding-color li.connectoor_jobs', function(e) {
-									if (e.target.tagName.toLowerCase() !== 'a') {
-										window.location.href = $(this).find('a').attr('href');
-									}
-								});
-
-							}
-						} );
-					} );
-				}
-
-				// Initialize Select2 on page load
-				initializeSelect2();
-			} );
-		</script>
 		<?php
 		return ob_get_clean();
 	}
@@ -433,7 +351,7 @@ class SearchAndBlocks {
 				$begin            = get_post_meta( get_the_ID(), '_connectoor_jobs_begin', true );
 
 				if ( empty( $begin ) || strtotime( gmdate( 'd.m.Y' ) ) < strtotime( $begin ) ) {
-					$begin = esc_html__( 'Now', 'connectoor-jobs-free' );
+					$begin = esc_html__( 'now', 'connectoor-jobs-free' );
 				}
 
 				$time = true === $deadline_visible ? $deadline : $begin;

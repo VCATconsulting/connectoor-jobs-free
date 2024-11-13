@@ -4,7 +4,7 @@ Contributors: VCATconsulting, shogathu, nida78
 Requires at least: 5.0
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -103,6 +103,11 @@ The current version of our recruiting software, Connectoor, is specifically deve
 
 
 == Changelog ==
+
+= 1.0.2 =
+
+* move inline js to external file
+* fix some translations
 
 = 1.0.1 =
 

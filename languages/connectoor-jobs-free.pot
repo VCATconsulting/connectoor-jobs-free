@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-25T11:15:23+00:00\n"
+"POT-Creation-Date: 2024-11-13T13:30:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: connectoor-jobs-free\n"
 
 #. Plugin Name of the plugin
@@ -74,15 +74,19 @@ msgstr ""
 msgid "Connectoor"
 msgstr ""
 
-#: lib/Helpers/SearchAndBlocks.php:119
-#: lib/Helpers/SearchAndBlocks.php:159
+#: lib/Helpers/SearchAndBlocks.php:121
+#: lib/Helpers/SearchAndBlocks.php:133
 msgid "Search Jobs..."
 msgstr ""
 
-#: lib/Helpers/SearchAndBlocks.php:436
+#: lib/Helpers/SearchAndBlocks.php:122
+msgid "read more"
+msgstr ""
+
+#: lib/Helpers/SearchAndBlocks.php:354
 #: build/frontend.js:188
 #: build/frontend.js:89
-msgid "Now"
+msgid "now"
 msgstr ""
 
 #: lib/PostTypes/ConnectoorJobs.php:31

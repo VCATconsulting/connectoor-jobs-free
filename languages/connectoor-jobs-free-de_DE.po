@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Connectoor Jobs Free 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/connectoor-jobs-"
 "free\n"
-"POT-Creation-Date: 2024-10-25T11:15:23+00:00\n"
-"PO-Revision-Date: 2024-10-25 13:16+0200\n"
+"POT-Creation-Date: 2024-11-13T13:30:57+00:00\n"
+"PO-Revision-Date: 2024-11-13 15:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -81,19 +81,23 @@ msgstr "Connectoor Jobs Abfrage"
 #: lib/Helpers/PredefinedPattern.php:45
 msgctxt "Block pattern description"
 msgid "Displays a list of Jobs with meta fields and search"
-msgstr "Zeigt eine Liste von Jobs mit Meta-Feldern und Suche an"
+msgstr "Zeigt eine Liste von Jobs mit Metafeldern und Suche an"
 
 #: lib/Helpers/PredefinedPattern.php:85
 msgid "Connectoor"
 msgstr "Connectoor"
 
-#: lib/Helpers/SearchAndBlocks.php:119 lib/Helpers/SearchAndBlocks.php:159
+#: lib/Helpers/SearchAndBlocks.php:121 lib/Helpers/SearchAndBlocks.php:133
 msgid "Search Jobs..."
 msgstr "Jobs suchen..."
 
-#: lib/Helpers/SearchAndBlocks.php:436 build/frontend.js:188
+#: lib/Helpers/SearchAndBlocks.php:122
+msgid "read more"
+msgstr "weiterlesen"
+
+#: lib/Helpers/SearchAndBlocks.php:354 build/frontend.js:188
 #: build/frontend.js:89
-msgid "Now"
+msgid "now"
 msgstr "ab sofort"
 
 #: lib/PostTypes/ConnectoorJobs.php:31 lib/PostTypes/ConnectoorJobs.php:55
@@ -158,7 +162,7 @@ msgstr "Connectoor Jobs Liste"
 
 #: lib/PostTypes/ConnectoorJobs.php:45
 msgid "New Connectoor Jobs"
-msgstr "Neue Jobs in Connectoor"
+msgstr "Neue Connectoor Jobs"
 
 #: lib/PostTypes/ConnectoorJobs.php:46
 msgid "Add New"
@@ -269,7 +273,7 @@ msgstr[1] "%s connectoor Jobs aktualisiert."
 
 #: lib/PostTypes/ConnectoorJobs.php:135
 msgid "1 Connectoor Job not updated, somebody is editing it."
-msgstr "%s Connectoor Jobs nicht aktualisiert, jemand bearbeitet sie."
+msgstr "1 Connectoor Jobs nicht aktualisiert, jemand bearbeitet ihn."
 
 #. translators: %s: Number of connectoor Jobs.
 #: lib/PostTypes/ConnectoorJobs.php:137
@@ -282,14 +286,14 @@ msgstr[1] "%s Connectoor Jobs nicht aktualisiert, jemand bearbeitet sie."
 #: lib/PostTypes/ConnectoorJobs.php:139
 msgid "%s Connectoor Jobs permanently deleted."
 msgid_plural "%s Connectoor Jobs permanently deleted."
-msgstr[0] "%s Connectoor Jobs endgültig gelöscht."
+msgstr[0] "%s Connectoor Jobs dauerhaft gelöscht."
 msgstr[1] "%s connectoor Jobs endgültig gelöscht."
 
 #. translators: %s: Number of connectoor Jobs.
 #: lib/PostTypes/ConnectoorJobs.php:141
 msgid "%s Connectoor Jobs moved to the Trash."
 msgid_plural "%s Connectoor Jobs moved to the Trash."
-msgstr[0] "%s Connectoor Jobs wurden in den Papierkorb verschoben."
+msgstr[0] "%s Connectoor Jobs in den Papierkorb verschoben."
 msgstr[1] "%s connectoor Jobs wurden in den Papierkorb verschoben."
 
 #. translators: %s: Number of connectoor Jobs.
@@ -314,27 +318,27 @@ msgstr "Job Beschäftigungsart"
 
 #: lib/Taxonomies/EmploymentType.php:47
 msgid "Search Job Employment Types"
-msgstr "Suche Beschäftigungsarten"
+msgstr "Suche Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:48
 msgid "Popular Job Employment Types"
-msgstr "Beliebte Job-Beschäftigungsarten"
+msgstr "Beliebte Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:49
 msgid "All Job Employment Types"
-msgstr "Alle Beschäftigungsarten"
+msgstr "Alle Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:50
 msgid "Parent Job Employment Type"
-msgstr "Elternjob Beschäftigungsart"
+msgstr "Übergeordnete Job Beschäftigungsart"
 
 #: lib/Taxonomies/EmploymentType.php:51
 msgid "Parent Job Employment Type:"
-msgstr "Elternjob Beschäftigungsart:"
+msgstr "Übergeordnete Job Beschäftigungsart:"
 
 #: lib/Taxonomies/EmploymentType.php:52
 msgid "Edit Job Employment Type"
-msgstr "Job bearbeiten Beschäftigungsart"
+msgstr "Job Beschäftigungsart bearbeiten"
 
 #: lib/Taxonomies/EmploymentType.php:53
 msgid "Update Job Employment Type"
@@ -346,7 +350,7 @@ msgstr "Job Beschäftigungsart ansehen"
 
 #: lib/Taxonomies/EmploymentType.php:55
 msgid "Add New Job Employment Type"
-msgstr "Neue Beschäftigungsart hinzufügen"
+msgstr "Neue Job Beschäftigungsart hinzufügen"
 
 #: lib/Taxonomies/EmploymentType.php:56
 msgid "New Job Employment Type"
@@ -354,23 +358,23 @@ msgstr "Neue Job Beschäftigungsart"
 
 #: lib/Taxonomies/EmploymentType.php:57
 msgid "Separate Job Employment Types with commas"
-msgstr "Trenne die Beschäftigungsarten mit Kommas"
+msgstr "Trenne Job Beschäftigungsarten mit Kommas"
 
 #: lib/Taxonomies/EmploymentType.php:58
 msgid "Add or remove Job Employment Types"
-msgstr "Beschäftigungsarten hinzufügen oder entfernen"
+msgstr "Job Beschäftigungsarten hinzufügen oder entfernen"
 
 #: lib/Taxonomies/EmploymentType.php:59
 msgid "Choose from the most used Job Employment Types"
-msgstr "Wähle aus den meistgenutzten Beschäftigungsarten"
+msgstr "Wähle aus den meistgenutzten Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:60
 msgid "No Job Employment Types found."
-msgstr "Keine Beschäftigungsarten gefunden."
+msgstr "Keine Job Beschäftigungsarten gefunden."
 
 #: lib/Taxonomies/EmploymentType.php:61
 msgid "No Job Employment Types"
-msgstr "Keine Job Beschäftigungsart"
+msgstr "Keine Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:63
 msgid "Job Employment Types list navigation"
@@ -378,7 +382,7 @@ msgstr "Job Beschäftigungsarten Liste Navigation"
 
 #: lib/Taxonomies/EmploymentType.php:64
 msgid "Job Employment Types list"
-msgstr "Liste der Beschäftigungsarten"
+msgstr "Liste der Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:65
 msgctxt "Employment Type"
@@ -544,7 +548,7 @@ msgstr ""
 
 #: build/admin.js:217 build/admin.js:161
 msgid "Branding Settings"
-msgstr "Branding Einstellungen"
+msgstr "Marken Einstellungen"
 
 #: build/admin.js:221 build/admin.js:168
 msgid "Here you can add specific settings for your brand."
@@ -587,6 +591,9 @@ msgstr "Suchfeld"
 msgctxt "block title"
 msgid "Meta Field"
 msgstr "Meta Feld"
+
+#~ msgid "Now"
+#~ msgstr "Ab sofort"
 
 #~ msgid "Meta Field Key"
 #~ msgstr "Metafeld-Schlüssel"

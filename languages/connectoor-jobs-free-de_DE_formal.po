@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Connectoor Jobs Free 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/connectoor-jobs-"
 "free\n"
-"POT-Creation-Date: 2024-10-25T11:15:23+00:00\n"
-"PO-Revision-Date: 2024-10-25 13:16+0200\n"
+"POT-Creation-Date: 2024-11-13T13:30:57+00:00\n"
+"PO-Revision-Date: 2024-11-13 15:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -78,7 +78,7 @@ msgstr ""
 
 #: lib/Helpers/PredefinedPattern.php:44
 msgid "Connectoor Jobs Query Loop"
-msgstr "Connectoor Jobs Abfrageschleife"
+msgstr "Connectoor Jobs Abfrage"
 
 #: lib/Helpers/PredefinedPattern.php:45
 msgctxt "Block pattern description"
@@ -89,13 +89,17 @@ msgstr "Zeigt eine Liste von Jobs mit Metafeldern und Suche an"
 msgid "Connectoor"
 msgstr "Connectoor"
 
-#: lib/Helpers/SearchAndBlocks.php:119 lib/Helpers/SearchAndBlocks.php:159
+#: lib/Helpers/SearchAndBlocks.php:121 lib/Helpers/SearchAndBlocks.php:133
 msgid "Search Jobs..."
 msgstr "Jobs suchen..."
 
-#: lib/Helpers/SearchAndBlocks.php:436 build/frontend.js:188
+#: lib/Helpers/SearchAndBlocks.php:122
+msgid "read more"
+msgstr "weiterlesen"
+
+#: lib/Helpers/SearchAndBlocks.php:354 build/frontend.js:188
 #: build/frontend.js:89
-msgid "Now"
+msgid "now"
 msgstr "ab sofort"
 
 #: lib/PostTypes/ConnectoorJobs.php:31 lib/PostTypes/ConnectoorJobs.php:55
@@ -148,7 +152,7 @@ msgstr "Als Beitragsbild verwenden"
 
 #: lib/PostTypes/ConnectoorJobs.php:42
 msgid "Filter Connectoor Jobs list"
-msgstr "Liste der Connectoor Jobs filtern"
+msgstr "Filter Connectoor Jobs Liste"
 
 #: lib/PostTypes/ConnectoorJobs.php:43
 msgid "Connectoor Jobs list navigation"
@@ -277,7 +281,7 @@ msgstr "1 Connectoor Job nicht aktualisiert, jemand bearbeitet ihn."
 #: lib/PostTypes/ConnectoorJobs.php:137
 msgid "%s Connectoor Jobs not updated, somebody is editing it."
 msgid_plural "%s Connectoor Jobs not updated, somebody is editing them."
-msgstr[0] "%s Connectoor Jobs nicht aktualisiert, jemand bearbeitet es."
+msgstr[0] "%s Connectoor Jobs nicht aktualisiert, jemand bearbeitet sie."
 msgstr[1] "%s Connectoor Jobs nicht aktualisiert, jemand bearbeitet sie."
 
 #. translators: %s: Number of connectoor Jobs.
@@ -316,7 +320,7 @@ msgstr "Job Beschäftigungsart"
 
 #: lib/Taxonomies/EmploymentType.php:47
 msgid "Search Job Employment Types"
-msgstr "Suche Beschäftigungsarten"
+msgstr "Suche Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:48
 msgid "Popular Job Employment Types"
@@ -328,11 +332,11 @@ msgstr "Alle Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:50
 msgid "Parent Job Employment Type"
-msgstr "Elternjob Beschäftigungsart"
+msgstr "Übergeordnete Job Beschäftigungsart"
 
 #: lib/Taxonomies/EmploymentType.php:51
 msgid "Parent Job Employment Type:"
-msgstr "Elternjob Beschäftigungsart:"
+msgstr "Übergeordnete Job Beschäftigungsart:"
 
 #: lib/Taxonomies/EmploymentType.php:52
 msgid "Edit Job Employment Type"
@@ -348,7 +352,7 @@ msgstr "Job Beschäftigungsart ansehen"
 
 #: lib/Taxonomies/EmploymentType.php:55
 msgid "Add New Job Employment Type"
-msgstr "Neue Beschäftigungsart hinzufügen "
+msgstr "Neue Job Beschäftigungsart hinzufügen"
 
 #: lib/Taxonomies/EmploymentType.php:56
 msgid "New Job Employment Type"
@@ -356,7 +360,7 @@ msgstr "Neue Job Beschäftigungsart"
 
 #: lib/Taxonomies/EmploymentType.php:57
 msgid "Separate Job Employment Types with commas"
-msgstr "Trennen Sie Beschäftigungsarten mit Kommas"
+msgstr "Trennen Sie Job Beschäftigungsarten mit Kommas"
 
 #: lib/Taxonomies/EmploymentType.php:58
 msgid "Add or remove Job Employment Types"
@@ -364,7 +368,7 @@ msgstr "Job Beschäftigungsarten hinzufügen oder entfernen"
 
 #: lib/Taxonomies/EmploymentType.php:59
 msgid "Choose from the most used Job Employment Types"
-msgstr "Wählen Sie aus den am häufigsten verwendeten Beschäftigungsarten"
+msgstr "Wähle Sie aus den meistgenutzten Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:60
 msgid "No Job Employment Types found."
@@ -372,7 +376,7 @@ msgstr "Keine Job Beschäftigungsarten gefunden."
 
 #: lib/Taxonomies/EmploymentType.php:61
 msgid "No Job Employment Types"
-msgstr "Kein Job Beschäftigungstypen"
+msgstr "Keine Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:63
 msgid "Job Employment Types list navigation"
@@ -380,7 +384,7 @@ msgstr "Job Beschäftigungsarten Liste Navigation"
 
 #: lib/Taxonomies/EmploymentType.php:64
 msgid "Job Employment Types list"
-msgstr "Liste der Beschäftigungstypen"
+msgstr "Liste der Job Beschäftigungsarten"
 
 #: lib/Taxonomies/EmploymentType.php:65
 msgctxt "Employment Type"
@@ -397,7 +401,7 @@ msgstr "Job Beschäftigungsart hinzugefügt."
 
 #: lib/Taxonomies/EmploymentType.php:85
 msgid "Job Employment Type deleted."
-msgstr "Job Beschäftigungsart entfällt."
+msgstr "Job Beschäftigungsart gelöscht."
 
 #: lib/Taxonomies/EmploymentType.php:86
 msgid "Job Employment Type updated."

@@ -10,7 +10,7 @@
  * Plugin Name: Connectoor Jobs Free
  * Plugin URI: https://github.com/VCATconsulting/connectoor-jobs-free
  * Description: Free plugin for creating jobs in WordPress
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: VCAT Consulting GmbH - Team WordPress
  * Author URI: https://www.vcat.de
  * Text Domain: connectoor-jobs-free
@@ -18,7 +18,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-define( 'CONNECTOOR_JOBS_VERSION', '1.0.1' );
+define( 'CONNECTOOR_JOBS_VERSION', '1.0.2' );
 define( 'CONNECTOOR_JOBS_FILE', __FILE__ );
 define( 'CONNECTOOR_JOBS_PATH', plugin_dir_path( CONNECTOOR_JOBS_FILE ) );
 define( 'CONNECTOOR_JOBS_URL', plugin_dir_url( CONNECTOOR_JOBS_FILE ) );
