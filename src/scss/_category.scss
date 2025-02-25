@@ -1,0 +1,28 @@
+.tax-connectoor_tax_job_category {
+	ul.wp-block-post-template {
+		li {
+			&:hover {
+				background: var(--connectoor-jobs-branding-color);
+				p {
+					color: black !important;
+				}
+				a {
+					text-decoration: underline;
+
+					&:hover,
+					&:focus {
+						text-decoration: none;
+					}
+				}
+			}
+			a {
+				text-decoration: underline;
+
+				&:hover,
+				&:focus {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}

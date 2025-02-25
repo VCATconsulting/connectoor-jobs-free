@@ -1,0 +1,82 @@
+.connectoor-jobs-search-field-wrapper {
+	width: 100%;
+	margin-bottom: 15px;
+
+	.select2-search {
+		width: 100% !important;
+		border-radius: 5px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		font-size: 14px;
+		letter-spacing: 0.05em;
+		box-sizing: border-box !important;
+	}
+
+}
+
+.wp-block-query {
+	.connectoor_jobs {
+		margin-bottom: 15px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
+		padding: 15px;
+		background: #f9f9fa;
+		transition: all 0.3s ease-in-out;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px -20px, rgba(0, 0, 0, 0.1) 0px 4px 4px -20px, rgba(0, 0, 0, 0.1) 0px 8px 8px -20px, rgba(0, 0, 0, 0.1) 0px 16px 16px -20px, rgba(0, 0, 0, 0.1) 0px 32px 32px -20px;
+
+		.job-meta,
+		.search-result-meta{
+			div {
+				width: calc(100% / 3);
+				font-size: 14px;
+				text-align: center;
+
+				&:first-child {
+					text-align: left;
+				}
+
+				&:last-child {
+					text-align: right;
+				}
+			}
+		}
+		.search-result-meta {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: nowrap;
+		}
+
+		&:hover {
+			color: #ffffff;
+			cursor: pointer;
+			transition: all 0.15s ease-in-out;
+
+			a {
+				color: #ffffff;
+			}
+		}
+		&.branding-color {
+			&:hover {
+				background: var(--connectoor-jobs-branding-color);
+			}
+			.wp-block-read-more {
+				margin-block-start: 1.2rem;
+			}
+		}
+	}
+
+	.branding-color li {
+		&:hover {
+			background: var(--connectoor-jobs-branding-color);
+		}
+	}
+}
+
+.wp-block-button.branding-color {
+	a {
+		background: var(--connectoor-jobs-branding-color);
+		&:hover,
+		&:focus {
+			color: black;
+		}
+	}
+}
