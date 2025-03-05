@@ -1,5 +1,7 @@
 import './admin.scss';
 
+import backendBanner from './images/backend-banner.png';
+
 import api from '@wordpress/api';
 
 import {
@@ -12,6 +14,7 @@ import {
 	Placeholder,
 	Spinner,
 	ColorPicker,
+	ResponsiveWrapper
 } from '@wordpress/components';
 
 
@@ -82,6 +85,12 @@ class App extends Component {
 					</div>
 				</div>
 				<div className='connectoor-jobs__main'>
+					<ResponsiveWrapper naturalWidth={ 1280 } naturalHeight={ 664 }>
+						<img
+							src={backendBanner}
+							alt="Connectoor Jobs Pro Banner"
+						/>
+					</ResponsiveWrapper>
 					<Panel>
 						<PanelBody
 							title={ __( 'Connectoor Jobs Pro - Upgrade', 'connectoor-jobs-free' ) }

@@ -35,9 +35,10 @@ class Settings {
 			'connectoor_jobs-brand-settings',
 			'_connectoor_jobs_branding_color',
 			[
-				'default'      => '',
-				'show_in_rest' => true,
-				'type'         => 'string',
+				'type'              => 'string',
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => '',
 			]
 		);
 	}

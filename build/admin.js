@@ -14,6 +14,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/images/backend-banner.png":
+/*!***************************************!*\
+  !*** ./src/images/backend-banner.png ***!
+  \***************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "images/backend-banner.a3a12a44.png";
+
+/***/ }),
+
 /***/ "react":
 /*!************************!*\
   !*** external "React" ***!
@@ -115,6 +125,18 @@ module.exports = window["wp"]["i18n"];
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -131,6 +153,29 @@ module.exports = window["wp"]["i18n"];
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 /*!**********************!*\
@@ -140,21 +185,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _admin_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./admin.scss */ "./src/admin.scss");
-/* harmony import */ var _wordpress_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api */ "@wordpress/api");
-/* harmony import */ var _wordpress_api__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _images_backend_banner_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./images/backend-banner.png */ "./src/images/backend-banner.png");
+/* harmony import */ var _wordpress_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/api */ "@wordpress/api");
+/* harmony import */ var _wordpress_api__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
 
 
 
-class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Component {
+
+class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
   state = {};
   constructor() {
     super(...arguments);
@@ -166,8 +213,8 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Component {
     };
   }
   componentDidMount() {
-    _wordpress_api__WEBPACK_IMPORTED_MODULE_2___default().loadPromise.then(() => {
-      this.settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_2___default().models).Settings();
+    _wordpress_api__WEBPACK_IMPORTED_MODULE_3___default().loadPromise.then(() => {
+      this.settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_3___default().models).Settings();
       const {
         isAPILoaded
       } = this.state;
@@ -190,7 +237,7 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Component {
       isAPILoaded
     } = this.state;
     if (!isAPILoaded) {
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Placeholder, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null));
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Placeholder, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null));
     }
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "connectoor-jobs__header"
@@ -198,52 +245,58 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Component {
       className: "connectoor-jobs__container"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "connectoor-jobs__title"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Connectoor Jobs Free - Settings', 'connectoor-jobs-free'), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Icon, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Connectoor Jobs Free - Settings', 'connectoor-jobs-free'), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Icon, {
       icon: "admin-plugins"
     }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "connectoor-jobs__main"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Connectoor Jobs Pro - Upgrade', 'connectoor-jobs-free'),
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ResponsiveWrapper, {
+      naturalWidth: 1280,
+      naturalHeight: 664
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: _images_backend_banner_png__WEBPACK_IMPORTED_MODULE_2__,
+      alt: "Connectoor Jobs Pro Banner"
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Connectoor Jobs Pro - Upgrade', 'connectoor-jobs-free'),
       icon: "admin-plugins"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl.VisualLabel, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl.VisualLabel, {
       className: "api-description"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       dangerouslySetInnerHTML: {
         // eslint-disable-next-line no-undef
         // translators: %s: URL to the Connectoor Jobs Pro page.
-        __html: sprintf((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs-free'), 'https://www.connectoor.com/wordpress-plugin')
+        __html: sprintf((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs-free'), 'https://www.connectoor.com/wordpress-plugin')
       }
-    })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Branding Settings', 'connectoor-jobs-free'),
+    })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Branding Settings', 'connectoor-jobs-free'),
       icon: "admin-plugins"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl.VisualLabel, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl.VisualLabel, {
       className: "api-description"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Here you can add specific settings for your brand.', 'connectoor-jobs-free')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPicker, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Here you can add specific settings for your brand.', 'connectoor-jobs-free')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ColorPicker, {
       color: brandingColor,
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Select a branding color', 'connectoor-jobs-free'),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Branding Color', 'connectoor-jobs-free'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Select a branding color', 'connectoor-jobs-free'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Branding Color', 'connectoor-jobs-free'),
       onChange: brandingColor => this.setState({
         brandingColor
       }),
       enableAlpha: true,
       defaultValue: "blue"
-    })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
       className: "branding-color",
       isPrimary: true,
       isLarge: true,
       onClick: this.saveSettings
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Save Data', 'connectoor-jobs-free')), saveSettingsIsLoading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null), !saveSettingsIsLoading && settingsSaved && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Save Data', 'connectoor-jobs-free')), saveSettingsIsLoading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null), !saveSettingsIsLoading && settingsSaved && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `connectoor-jobs components-notice is-${saveSettingsStatus}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "connectoor-jobs components-notice__content"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Settings saved', 'connectoor-jobs-free'))))));
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Settings saved', 'connectoor-jobs-free'))))));
   }
   saveSettings = () => {
     const {
       brandingColor
     } = this.state;
     console.log(brandingColor);
-    const settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_2___default().models).Settings({
+    const settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_3___default().models).Settings({
       ['_connectoor_jobs_branding_color']: brandingColor
     });
     this.setState({
@@ -265,7 +318,7 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Component {
 document.addEventListener('DOMContentLoaded', () => {
   const htmlOutput = document.getElementById('connectoor-jobs-settings');
   if (htmlOutput) {
-    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, null), htmlOutput);
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, null), htmlOutput);
   }
 });
 /******/ })()
