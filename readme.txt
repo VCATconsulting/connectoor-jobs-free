@@ -37,10 +37,10 @@ Over 4,000 companies from various industries already trust Connectoor in the Ger
 
 == Installation ==
 
-1. Install and configure Gravity Forms plugin,
-2. Find this Bulk Download plugin in the "Add Plugins" page within your WordPress installation or Upload the Bulk Download plugin to your blog,
-3. Activate it,
-4. Find the Bulk Download link in list and single view!
+1. Find this Connectoor Jobs Free plugin in the "Add Plugins" page within your WordPress installation or Upload the Connctoor Jobs Free plugin to your blog,
+2. Activate it,
+3. Find the Settings page and set you brand color!
+4. Find the job cpt in the Admin menu and create your first jobs.
 
 == Screenshots ==
 
