@@ -98,14 +98,14 @@ class SearchAndBlocks {
 			$attributes['searchTerm'] = '';
 		}
 
-		$blocks  = parse_blocks( $post->post_content );
-		$cat_ids = [];
+		$blocks     = parse_blocks( $post->post_content );
+		$categories = [];
 		foreach ( $blocks as $block ) {
-			if ( 'core/group' === $block['blockName'] && isset( $block['innerBlocks'][0] ) && 'core/query' === $block['innerBlocks'][0]['blockName'] && ! empty( $block['innerBlocks'][0]['attrs']['query']['taxQuery'] ) ) {
-				$cat_ids = $block['innerBlocks'][0]['attrs']['query']['taxQuery'];
+			if ( 'core/group' === $block['blockName'] && isset( $block['innerBlocks'][1] ) && 'core/query' === $block['innerBlocks'][1]['blockName'] && ! empty( $block['innerBlocks'][1]['attrs']['query']['taxQuery'] ) ) {
+				$categories = $block['innerBlocks'][1]['attrs']['query']['taxQuery'];
 				break;
 			} else {
-				$cat_ids = [];
+				$categories = [];
 			}
 		}
 
@@ -117,7 +117,7 @@ class SearchAndBlocks {
 			'searchVars',
 			[
 				'ajaxUrl'         => admin_url( 'admin-ajax.php' ),
-				'catIds'          => $cat_ids,
+				'categoriesTerms' => $categories,
 				'placeholderText' => esc_html__( 'Search Jobs...', 'connectoor-jobs-free' ),
 				'readMoreText'    => esc_html__( 'read more', 'connectoor-jobs-free' ),
 			]
@@ -132,9 +132,6 @@ class SearchAndBlocks {
 				class="select2-search"
 				placeholder="<?php esc_html_e( 'Search Jobs...', 'connectoor-jobs-free' ); ?>"
 				value="<?php echo esc_attr( $attributes['searchTerm'] ); ?>"/>
-		</div>
-		<div class="wp-block-query-container">
-			<div class="wp-block-query"></div>
 		</div>
 		<?php
 		return ob_get_clean();
@@ -154,10 +151,21 @@ class SearchAndBlocks {
 		 * Get the search query and the categories.
 		 */
 		$search_query = sanitize_text_field( wp_unslash( $_GET['q'] ) ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		//phpcs:disable
-		$categories_query = isset( $_GET['categories'] ) ? wp_unslash( $_GET['categories'] ) : '';
-		$query_post_ids   = isset( $_GET['ids'] ) ? wp_unslash( $_GET['ids'] ) : '';
-		//phpcs:enable
+
+		$query_post_ids = isset( $_GET['ids'] ) ? array_unique( array_map( 'absint', $_GET['ids'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		$categories_query = [];
+
+		if ( isset( $_GET['categories'] ) && is_array( $_GET['categories'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$categories = wp_unslash( $_GET['categories'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			/*
+			 * Sanitize the categories.
+			 */
+			foreach ( $categories as $category => $cat_ids ) {
+				$category                      = sanitize_text_field( $category );
+				$categories_query[ $category ] = array_unique( array_map( 'intval', $cat_ids ) );
+			}
+		}
 
 		/*
 		 * Get the data from the post, meta and taxonomies.
@@ -283,17 +291,17 @@ class SearchAndBlocks {
 		 * Check if the categories are set.
 		 */
 		if ( is_array( $categories_query ) ) {
-			if ( ( isset( $categories_query['connectoor_tax_job_category'] ) && ( 0 !== (int) $categories_query['connectoor_tax_job_category'][0] ) ||
-				( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== (int) $categories_query['connectoor_tax_job_emp_type'][0] ) ) ) {
+			if ( ( isset( $categories_query['connectoor_tax_job_category'] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) ||
+				( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) ) {
 				/*
 				 * Check if the connectoor_tax_job_category category is set.
 				 */
-				if ( isset( $categories_query['connectoor_tax_job_category'] ) && 0 !== (int) $categories_query['connectoor_tax_job_category'][0] ) {
+				if ( isset( $categories_query['connectoor_tax_job_category'] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) {
 					$args_final['tax_query'] = [ //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 						'relation' => 'AND',
 						[
 							'taxonomy' => 'connectoor_tax_job_category',
-							'terms'    => $categories_query['connectoor_tax_job_category'][0],
+							'terms'    => $categories_query['connectoor_tax_job_category'],
 							'field'    => 'term_id',
 						],
 					];
@@ -302,12 +310,12 @@ class SearchAndBlocks {
 				/*
 				 * Check if the connectoor_tax_job_emp_type category is set.
 				 */
-				if ( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== (int) $categories_query['connectoor_tax_job_emp_type'][0] ) {
+				if ( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) {
 					$args_final['tax_query'] = [ //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 						'relation' => 'AND',
 						[
 							'taxonomy' => 'connectoor_tax_job_emp_type',
-							'terms'    => $categories_query['connectoor_tax_job_emp_type'][0],
+							'terms'    => $categories_query['connectoor_tax_job_emp_type'],
 							'field'    => 'term_id',
 						],
 					];
@@ -317,18 +325,18 @@ class SearchAndBlocks {
 			/*
 			 * Check if both categories are set.
 			 */
-			if ( ( isset( $categories_query['connectoor_tax_job_category'] ) && ( 0 !== (int) $categories_query['connectoor_tax_job_category'][0] ) &&
-				( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== (int) $categories_query['connectoor_tax_job_emp_type'][0] ) ) ) {
+			if ( ( isset( $categories_query['connectoor_tax_job_category'] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) &&
+				( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) ) {
 				$args_final['tax_query'] = [  //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 					'relation' => 'AND',
 					[
 						'taxonomy' => 'connectoor_tax_job_category',
-						'terms'    => $categories_query['connectoor_tax_job_category'][0],
+						'terms'    => $categories_query['connectoor_tax_job_category'],
 						'field'    => 'term_id',
 					],
 					[
 						'taxonomy' => 'connectoor_tax_job_emp_type',
-						'terms'    => $categories_query['connectoor_tax_job_emp_type'][0],
+						'terms'    => $categories_query['connectoor_tax_job_emp_type'],
 						'field'    => 'term_id',
 					],
 				];

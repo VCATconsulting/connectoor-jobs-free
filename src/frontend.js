@@ -45,7 +45,7 @@ jQuery(document).ready(function ($) {
 					return {
 						action: 'connectoor_jobs_search_jobs',
 						q: params.term,
-						categories: searchVars.catIds
+						categories: searchVars.categoriesTerms
 					};
 				},
 				processResults: function (data) {
@@ -77,7 +77,7 @@ jQuery(document).ready(function ($) {
 					action: 'connectoor_jobs_search_jobs',
 					q: searchTerm,
 					ids: selectedIds,
-					categories: searchVars.catIds
+					categories: searchVars.categoriesTerms
 				},
 				success: function (data) {
 					const queryLoopContainer = $('.wp-block-query');

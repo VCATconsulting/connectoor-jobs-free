@@ -3,7 +3,7 @@
         'name' => 'connectoor/connectoor-jobs',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '45ecca04797c92e7c6d7398208b6fad010c6e479',
+        'reference' => '172e5b51ae7995e1740a904c74715b820dba826b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'connectoor/connectoor-jobs' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '45ecca04797c92e7c6d7398208b6fad010c6e479',
+            'reference' => '172e5b51ae7995e1740a904c74715b820dba826b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

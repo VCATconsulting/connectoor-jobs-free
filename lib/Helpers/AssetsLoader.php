@@ -154,11 +154,11 @@ class AssetsLoader {
 		/*
 		 * Create css variable for branding color.
 		 */
-		$custom_css = "
-        :root {
-            --connectoor-jobs-branding-color: {$branding_color};
-        }
-        ";
+		$custom_css = sprintf(
+		// Translators: %s is the branding color.
+			esc_html( ':root { --connectoor-jobs-branding-color: %s; }' ),
+			$branding_color
+		);
 
 		/*
 		 * Add the css to the frontend and admin settings page.

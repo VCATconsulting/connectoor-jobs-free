@@ -7,15 +7,15 @@
 
 namespace CONNECTOOR_JOBS;
 
+use CONNECTOOR_JOBS\Helpers\AddQuickLink;
 use CONNECTOOR_JOBS\Helpers\AssetsLoader;
+use CONNECTOOR_JOBS\Helpers\PredefinedPattern;
+use CONNECTOOR_JOBS\PostMeta\JobMeta;
 use CONNECTOOR_JOBS\PostTypes\ConnectoorJobs;
 use CONNECTOOR_JOBS\Settings\Settings;
-use CONNECTOOR_JOBS\PostMeta\JobMeta;
-use CONNECTOOR_JOBS\Taxonomies\JobCategory;
 use CONNECTOOR_JOBS\Taxonomies\EmploymentType;
-use CONNECTOOR_JOBS\Helpers\PredefinedPattern;
+use CONNECTOOR_JOBS\Taxonomies\JobCategory;
 use CONNECTOOR_JOBS\Helpers\SearchAndBlocks;
-use CONNECTOOR_JOBS\Helpers\AddQuickLink;
 
 
 /**
