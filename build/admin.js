@@ -245,7 +245,7 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       className: "connectoor-jobs__container"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "connectoor-jobs__title"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Connectoor Jobs Free - Settings', 'connectoor-jobs-free'), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Icon, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Connectoor Jobs - Settings', 'connectoor-jobs'), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Icon, {
       icon: "admin-plugins"
     }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "connectoor-jobs__main"
@@ -256,7 +256,7 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       src: _images_backend_banner_png__WEBPACK_IMPORTED_MODULE_2__,
       alt: "Connectoor Jobs Pro Banner"
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Connectoor Jobs Pro - Upgrade', 'connectoor-jobs-free'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Connectoor Jobs Pro - Upgrade', 'connectoor-jobs'),
       icon: "admin-plugins"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl.VisualLabel, {
       className: "api-description"
@@ -264,17 +264,17 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       dangerouslySetInnerHTML: {
         // eslint-disable-next-line no-undef
         // translators: %s: URL to the Connectoor Jobs Pro page.
-        __html: sprintf((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs-free'), 'https://www.connectoor.com/wordpress-plugin')
+        __html: sprintf((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs'), 'https://www.connectoor.com/wordpress-plugin')
       }
     })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Branding Settings', 'connectoor-jobs-free'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Branding Settings', 'connectoor-jobs'),
       icon: "admin-plugins"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl.VisualLabel, {
       className: "api-description"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Here you can add specific settings for your brand.', 'connectoor-jobs-free')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ColorPicker, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Here you can add specific settings for your brand.', 'connectoor-jobs')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ColorPicker, {
       color: brandingColor,
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Select a branding color', 'connectoor-jobs-free'),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Branding Color', 'connectoor-jobs-free'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Select a branding color', 'connectoor-jobs'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Branding Color', 'connectoor-jobs'),
       onChange: brandingColor => this.setState({
         brandingColor
       }),
@@ -285,11 +285,11 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       isPrimary: true,
       isLarge: true,
       onClick: this.saveSettings
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Save Data', 'connectoor-jobs-free')), saveSettingsIsLoading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null), !saveSettingsIsLoading && settingsSaved && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Save Data', 'connectoor-jobs')), saveSettingsIsLoading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null), !saveSettingsIsLoading && settingsSaved && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `connectoor-jobs components-notice is-${saveSettingsStatus}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "connectoor-jobs components-notice__content"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Settings saved', 'connectoor-jobs-free'))))));
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Settings saved', 'connectoor-jobs'))))));
   }
   saveSettings = () => {
     const {

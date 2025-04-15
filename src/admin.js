@@ -80,7 +80,7 @@ class App extends Component {
 				<div className='connectoor-jobs__header'>
 					<div className='connectoor-jobs__container'>
 						<div className='connectoor-jobs__title'>
-							<h1>{ __( 'Connectoor Jobs Free - Settings', 'connectoor-jobs-free' ) } <Icon icon='admin-plugins'/></h1>
+							<h1>{ __( 'Connectoor Jobs - Settings', 'connectoor-jobs' ) } <Icon icon='admin-plugins'/></h1>
 						</div>
 					</div>
 				</div>
@@ -93,7 +93,7 @@ class App extends Component {
 					</ResponsiveWrapper>
 					<Panel>
 						<PanelBody
-							title={ __( 'Connectoor Jobs Pro - Upgrade', 'connectoor-jobs-free' ) }
+							title={ __( 'Connectoor Jobs Pro - Upgrade', 'connectoor-jobs' ) }
 							icon='admin-plugins'
 						>
 							<BaseControl>
@@ -104,28 +104,28 @@ class App extends Component {
 										dangerouslySetInnerHTML={ {
 											// eslint-disable-next-line no-undef
 											// translators: %s: URL to the Connectoor Jobs Pro page.
-											__html: sprintf( __( 'Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs-free' ), 'https://www.connectoor.com/wordpress-plugin' )
+											__html: sprintf( __( 'Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs' ), 'https://www.connectoor.com/wordpress-plugin' )
 										} }
 									></div>
 								</BaseControl.VisualLabel>
 							</BaseControl>
 						</PanelBody>
 						<PanelBody
-							title={ __( 'Branding Settings', 'connectoor-jobs-free' ) }
+							title={ __( 'Branding Settings', 'connectoor-jobs' ) }
 							icon='admin-plugins'
 						>
 							<BaseControl>
 								<BaseControl.VisualLabel
 									className='api-description'
 								>
-									{ __( 'Here you can add specific settings for your brand.', 'connectoor-jobs-free' ) }
+									{ __( 'Here you can add specific settings for your brand.', 'connectoor-jobs' ) }
 								</BaseControl.VisualLabel>
 
 								<PanelRow>
 									<ColorPicker
 										color={ brandingColor }
-										help={ __( 'Select a branding color', 'connectoor-jobs-free' ) }
-										label={ __( 'Branding Color', 'connectoor-jobs-free' ) }
+										help={ __( 'Select a branding color', 'connectoor-jobs' ) }
+										label={ __( 'Branding Color', 'connectoor-jobs' ) }
 										onChange={ ( brandingColor ) => this.setState( { brandingColor } ) }
 										enableAlpha
 										defaultValue="blue"
@@ -143,7 +143,7 @@ class App extends Component {
 								this.saveSettings
 							}
 						>
-							{ __( 'Save Data', 'connectoor-jobs-free' ) }
+							{ __( 'Save Data', 'connectoor-jobs' ) }
 						</Button>
 						{ saveSettingsIsLoading && <Spinner/> }
 
@@ -151,7 +151,7 @@ class App extends Component {
 							<div className={ `connectoor-jobs components-notice is-${ saveSettingsStatus }` }>
 								<div className="connectoor-jobs components-notice__content">
 									{
-										__( 'Settings saved', 'connectoor-jobs-free' )
+										__( 'Settings saved', 'connectoor-jobs' )
 									}
 								</div>
 							</div>

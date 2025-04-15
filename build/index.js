@@ -32,7 +32,7 @@ function Edit() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToolbarGroup, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     className: "select2-search",
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Search jobs..', 'connectoor-jobs-free'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Search jobs..', 'connectoor-jobs'),
     value: ""
   }));
 }
@@ -68,7 +68,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const settings = {
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Job Search', 'connectoor-jobs-free'),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Job Search', 'connectoor-jobs'),
   icon: 'search',
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
   save() {
@@ -200,7 +200,7 @@ const MetaBox = ({
 }) => {
   if ('connectoor_jobs' !== postType) return null;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_edit_post__WEBPACK_IMPORTED_MODULE_4__.PluginDocumentSettingPanel, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Job Information', 'connectoor-jobs-free'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Job Information', 'connectoor-jobs'),
     icon: "businessman",
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
@@ -269,15 +269,13 @@ const MetaBox = ({
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Job URL", "connectoor-jobs"),
     onChange: value => setMetaFields({
       _connectoor_jobs_url: value
-    }),
-    readOnly: true
+    })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
     value: metaFields._connectoor_jobs_apply_url,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Apply URL", "connectoor-jobs"),
     onChange: value => setMetaFields({
       _connectoor_jobs_apply_url: value
-    }),
-    readOnly: true
+    })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
     value: metaFields._connectoor_jobs_email,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("E-Mail", "connectoor-jobs"),
@@ -771,7 +769,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"connectoor-jobs/meta-field","
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk_connectoor_connectoor_jobs_free"] = self["webpackChunk_connectoor_connectoor_jobs_free"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunk_connectoor_connectoor_jobs"] = self["webpackChunk_connectoor_connectoor_jobs"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();

@@ -71,7 +71,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<!-- Value: replace the text domain used. Separate multiple prefixes with a comma. -->
-			<property name="text_domain" type="array" value="connectoor-jobs-free"/>
+			<property name="text_domain" type="array" value="connectoor-jobs"/>
 		</properties>
 	</rule>
 	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">

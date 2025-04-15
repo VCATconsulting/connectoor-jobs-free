@@ -12,7 +12,7 @@ import './styles/style.scss';
 export { metadata };
 
 export const settings = {
-	title: __('Job Search', 'connectoor-jobs-free'),
+	title: __('Job Search', 'connectoor-jobs'),
 	icon: 'search',
 	edit,
 	save() {

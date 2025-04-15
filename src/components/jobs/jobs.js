@@ -1,19 +1,16 @@
 import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
-import { withSelect, withDispatch, } from '@wordpress/data';
+import { withSelect, withDispatch } from '@wordpress/data';
 import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 import { PanelRow, TextControl } from '@wordpress/components';
-
-
 
 const MetaBox = ( { postType, metaFields, setMetaFields } ) => {
 
 	if ( 'connectoor_jobs' !== postType ) return null;
 
 	return (
-
 		<PluginDocumentSettingPanel
-			title={ __( 'Job Information','connectoor-jobs-free' ) }
+			title={ __( 'Job Information','connectoor-jobs' ) }
 			icon="businessman"
 			initialOpen={ false }
 		>
@@ -93,7 +90,6 @@ const MetaBox = ( { postType, metaFields, setMetaFields } ) => {
 					value={ metaFields._connectoor_jobs_url }
 					label={ __( "Job URL", "connectoor-jobs" ) }
 					onChange={ ( value ) => setMetaFields( { _connectoor_jobs_url: value } ) }
-					readOnly
 				/>
 			</PanelRow>
 			<PanelRow>
@@ -101,7 +97,6 @@ const MetaBox = ( { postType, metaFields, setMetaFields } ) => {
 					value={ metaFields._connectoor_jobs_apply_url }
 					label={ __( "Apply URL", "connectoor-jobs" ) }
 					onChange={ ( value ) => setMetaFields( { _connectoor_jobs_apply_url: value } ) }
-					readOnly
 				/>
 			</PanelRow>
 			<PanelRow>

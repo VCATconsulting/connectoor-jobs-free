@@ -45,8 +45,9 @@ class AddQuickLink {
 	 * @return array
 	 */
 	public function add_query_var( $qvars ) {
-		/* phpcs:ignore WordPress.Security.NonceVerification.Recommended */
-		if ( isset( $_GET['post_type'] ) && 'connectoor_jobs' === $_GET['post_type'] ) {
+		// This is safe: we are only reading a URL param to add a query var, no action is performed.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( is_admin() && current_user_can( 'edit_posts' ) && isset( $_GET['post_type'] ) && 'connectoor_jobs' === sanitize_key( $_GET['post_type'] ) ) {
 			$qvars[] = 'connectoor_jobs_add_type';
 		}
 
@@ -73,10 +74,15 @@ class AddQuickLink {
 			$query->set(
 				'meta_query',
 				[
+					'relation' => 'OR',
 					[
 						'key'     => '_connectoor_jobs_referencenumber',
 						'value'   => '',
 						'compare' => '=',
+					],
+					[
+						'key'     => '_connectoor_jobs_referencenumber',
+						'compare' => 'NOT EXISTS',
 					],
 				]
 			);
@@ -93,16 +99,27 @@ class AddQuickLink {
 	 * @return array
 	 */
 	public function add_new_view_tab( $views ) {
-		if ( ( is_admin() ) && isset( $_GET['post_type'] ) && ( 'connectoor_jobs' === $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return $views;
+		}
+
+		// This is safe: we're only reading post_type in admin context to show custom view tabs.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( is_admin() && isset( $_GET['post_type'] ) && 'connectoor_jobs' === sanitize_key( $_GET['post_type'] ) ) {
 			global $wp_query;
 
 			$query = [
 				'post_type'  => 'connectoor_jobs',
 				'meta_query' => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+					'relation' => 'OR',
 					[
 						'key'     => '_connectoor_jobs_referencenumber',
 						'value'   => '',
 						'compare' => '=',
+					],
+					[
+						'key'     => '_connectoor_jobs_referencenumber',
+						'compare' => 'NOT EXISTS',
 					],
 				],
 			];
@@ -111,8 +128,8 @@ class AddQuickLink {
 			$class                   = ( isset( $wp_query->query_vars['connectoor_jobs_add_type'] ) && 'manually_added' === $wp_query->query_vars['connectoor_jobs_add_type'] ) ? 'current' : '';
 			$views['manually_added'] = sprintf(
 			// translators: %1$s: admin url link, %2$s: class string, %3$d: number of manually added jobs.
-				__( '<a href="%1$s" class="%2$s">Manually jobs (%3$d)</a>', 'connectoor-jobs-free' ),
-				admin_url( 'edit.php?connectoor_jobs_add_type=manually_added&post_type=connectoor_jobs' ),
+				__( '<a href="%1$s" class="%2$s">Manually jobs (%3$d)</a>', 'connectoor-jobs' ),
+				admin_url( 'edit.php?post_type=connectoor_jobs&connectoor_jobs_add_type=manually_added' ),
 				$class,
 				$result->found_posts
 			);

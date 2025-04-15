@@ -1,19 +1,19 @@
 <?php
 /**
- * Connectoor Jobs Free
+ * Connectoor Jobs
  *
  * @package connectoor-jobs
  * @author  VCAT Consulting GmbH - Team WordPress
  * @license GPLv3
  *
  * @wordpress-plugin
- * Plugin Name: Connectoor Jobs Free
- * Plugin URI: https://github.com/VCATconsulting/connectoor-jobs-free
- * Description: Free plugin for creating jobs in WordPress
- * Version: 1.2.0
+ * Plugin Name: Connectoor Jobs
+ * Plugin URI: https://github.com/VCATconsulting/connectoor-jobs
+ * Description: Plugin for creating jobs in WordPress
+ * Version: 1.2.4
  * Author: VCAT Consulting GmbH - Team WordPress
  * Author URI: https://www.vcat.de
- * Text Domain: connectoor-jobs-free
+ * Text Domain: connectoor-jobs
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  */
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CONNECTOOR_JOBS_VERSION', '1.2.0' );
+define( 'CONNECTOOR_JOBS_VERSION', '1.2.4' );
 define( 'CONNECTOOR_JOBS_FILE', __FILE__ );
 define( 'CONNECTOOR_JOBS_PATH', plugin_dir_path( CONNECTOOR_JOBS_FILE ) );
 define( 'CONNECTOOR_JOBS_URL', plugin_dir_url( CONNECTOOR_JOBS_FILE ) );
@@ -66,7 +66,7 @@ function connectoor_jobs_pre_init() {
  */
 function connectoor_jobs_min_php_version_error() {
 	echo '<div class="error"><p>';
-	esc_html_e( 'Connectoor Jobs requires PHP version 7.4 or higher to function properly. Please upgrade PHP or deactivate Connectoor Jobs.', 'connectoor-jobs-free' );
+	esc_html_e( 'Connectoor Jobs requires PHP version 7.4 or higher to function properly. Please upgrade PHP or deactivate Connectoor Jobs.', 'connectoor-jobs' );
 	echo '</p></div>';
 }
 
@@ -75,6 +75,6 @@ function connectoor_jobs_min_php_version_error() {
  */
 function connectoor_jobs_autoloader_missing() {
 	echo '<div class="error"><p>';
-	esc_html_e( 'Connectoor Jobs is missing the Composer autoloader file. Please run `composer install --no-dev -o` in the root folder of the plugin or use a release version including the `vendor` folder.', 'connectoor-jobs-free' );
+	esc_html_e( 'Connectoor Jobs is missing the Composer autoloader file. Please run `composer install --no-dev -o` in the root folder of the plugin or use a release version including the `vendor` folder.', 'connectoor-jobs' );
 	echo '</p></div>';
 }

@@ -1,10 +1,10 @@
-=== Connectoor Jobs Free ===
+=== Connectoor Jobs ===
 
 Contributors: VCATconsulting, shogathu, nida78
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -16,7 +16,7 @@ Unlock the Potential of Your Career Page with the Connectoor WordPress Plugin!
 
 Effortlessly Create Job Listings
 
-With the free version of the Connectoor WordPress plugin, businesses can easily, securely, and cost-effectively publish their job listings on their own career pages. Present your job offers clearly and attractively, allowing applicants to quickly see key information such as location, type of employment, and start date. By clicking on the job listing, applicants are directed to a detailed page on your website.
+With the version of the Connectoor WordPress plugin, businesses can easily, securely, and cost-effectively publish their job listings on their own career pages. Present your job offers clearly and attractively, allowing applicants to quickly see key information such as location, type of employment, and start date. By clicking on the job listing, applicants are directed to a detailed page on your website.
 
 Benefits That Impress:
 
@@ -37,7 +37,7 @@ Over 4,000 companies from various industries already trust Connectoor in the Ger
 
 == Installation ==
 
-1. Find this Connectoor Jobs Free plugin in the "Add Plugins" page within your WordPress installation or Upload the Connctoor Jobs Free plugin to your blog,
+1. Find this Connectoor Jobs plugin in the "Add Plugins" page within your WordPress installation or Upload the Connctoor Jobs plugin to your blog,
 2. Activate it,
 3. Find the Settings page and set you brand color!
 4. Find the job cpt in the Admin menu and create your first jobs.
@@ -59,9 +59,9 @@ Over 4,000 companies from various industries already trust Connectoor in the Ger
 
 The Connectoor WordPress Plugin is a tool that helps companies easily, securely, and cost-effectively publish their job listings on their own career page. It offers both a free and a Pro version, which includes additional features and integration with the Connectoor recruiting system.
 
-= What features does the free version of the plugin offer?
+= What features does the version of the plugin offer?
 
-The free version allows the publication of job listings on your career page. You can include important information such as location, type of employment, and start date in your job postings, and they are displayed in an SEO-optimized manner.
+The version allows the publication of job listings on your career page. You can include important information such as location, type of employment, and start date in your job postings, and they are displayed in an SEO-optimized manner.
 
 = What are the benefits of the Pro version?
 
@@ -69,7 +69,7 @@ The Pro version offers seamless integration with the Connectoor recruiting syste
 
 = How does the Connectoor Plugin differ from other job plugins?
 
-With the Connectoor Jobs Free plugin, you can easily and securely publish jobs on your own career site. With the individual “Apply button” you can forward potential talents directly to your application form or external forms from your recruiting software. However, we recommend that you manage all applications quickly and securely in the Connectoor applicant management system.
+With the Connectoor Jobs plugin, you can easily and securely publish jobs on your own career site. With the individual “Apply button” you can forward potential talents directly to your application form or external forms from your recruiting software. However, we recommend that you manage all applications quickly and securely in the Connectoor applicant management system.
 
 = Is the plugin GDPR-compliant?
 
@@ -88,18 +88,35 @@ The plugin ensures that your job listings are optimized for search engines by pr
 Yes, the plugin allows you to receive applications directly through your website. You can decide whether applications should be submitted via email (1), through an online form (2), or in other ways. However, we recommend managing applicants in a GDPR-compliant and process-optimized manner using Connectoor. This is the safest way to manage applicants’ personal data efficiently.
 
 (1) Please note: If you receive personal data via email, you are responsible for processing and deleting it. Most companies cannot ensure this securely and in compliance with GDPR according to common assessments. Please inform yourself about the requirements you need to meet if you want to manage applicant data in your company without a recruiting software.
-(2) We do not provide an application form in this plugin. This is part of the Connectoor recruiting system and can be used in a GDPR-compliant manner through this method. If you wish to create your own form in the free plugin, you can do so at your own responsibility using a form builder. However, please be aware of our data protection warnings regarding the handling of applicants’ personal data!
+(2) We do not provide an application form in this plugin. This is part of the Connectoor recruiting system and can be used in a GDPR-compliant manner through this method. If you wish to create your own form in the plugin, you can do so at your own responsibility using a form builder. However, please be aware of our data protection warnings regarding the handling of applicants’ personal data!
 
 = What happens if I need technical support?
 
-Our support team is available in the PRO version and, of course, for Connectoor itself to answer technical questions and assist you with problem-solving. You can reach us via email or through our support portal. In the free version of our plugin, we ask you to primarily refer to our documentation.
+Our support team is available in the PRO version and, of course, for Connectoor itself to answer technical questions and assist you with problem-solving. You can reach us via email or through our support portal. In the version of our plugin, we ask you to primarily refer to our documentation.
 
 = Is Connectoor offered outside the German-speaking region?
 
-The current version of our recruiting software, Connectoor, is specifically developed and optimized for the German-speaking region. While our clients receive international applications daily, the companies using Connectoor are primarily located in Germany, Austria, and Switzerland. Additional countries where we plan to offer the next generation of Connectoor are planned but not yet implemented. You are welcome to use the Connectoor Jobs Free plugin internationally, because the plugin comes with the general language markup.
+The current version of our recruiting software, Connectoor, is specifically developed and optimized for the German-speaking region. While our clients receive international applications daily, the companies using Connectoor are primarily located in Germany, Austria, and Switzerland. Additional countries where we plan to offer the next generation of Connectoor are planned but not yet implemented. You are welcome to use the Connectoor Jobs plugin internationally, because the plugin comes with the general language markup.
 
 
 == Changelog ==
+
+= 1.2.4 =
+
+* fix some nonce issues
+* fix view for manual jobs
+
+= 1.2.3 =
+
+* fix bug in search
+
+= 1.2.2 =
+
+* fix nonce issues
+
+= 1.2.1 =
+
+* fix some phpcs issues
 
 = 1.2.0 =
 

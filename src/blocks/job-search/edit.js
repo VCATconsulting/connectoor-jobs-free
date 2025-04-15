@@ -13,7 +13,7 @@ export function Edit(  ) {
 			<BlockControls>
 				<ToolbarGroup/>
 			</BlockControls>
-			<input type="text" className="select2-search" placeholder={ __( 'Search jobs..', 'connectoor-jobs-free' ) } value=""/>
+			<input type="text" className="select2-search" placeholder={ __( 'Search jobs..', 'connectoor-jobs' ) } value=""/>
 		</div>
 	);
 }

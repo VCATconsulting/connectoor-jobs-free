@@ -21,7 +21,7 @@ class EmploymentType {
 
 	/**
 	 *
-	 * Registers the `connectoor_tax_job_type Category` taxonomy for use with 'connectoor-jobs-free'.
+	 * Registers the `connectoor_tax_job_type Category` taxonomy for use with 'connectoor-jobs'.
 	 */
 	public function register_taxonomy() {
 		register_taxonomy(
@@ -42,28 +42,28 @@ class EmploymentType {
 					'assign_terms' => 'edit_posts',
 				],
 				'labels'            => [
-					'name'                       => __( 'Job Employment Types', 'connectoor-jobs-free' ),
-					'singular_name'              => _x( 'Job Employment Type', 'taxonomy general name', 'connectoor-jobs-free' ),
-					'search_items'               => __( 'Search Job Employment Types', 'connectoor-jobs-free' ),
-					'popular_items'              => __( 'Popular Job Employment Types', 'connectoor-jobs-free' ),
-					'all_items'                  => __( 'All Job Employment Types', 'connectoor-jobs-free' ),
-					'parent_item'                => __( 'Parent Job Employment Type', 'connectoor-jobs-free' ),
-					'parent_item_colon'          => __( 'Parent Job Employment Type:', 'connectoor-jobs-free' ),
-					'edit_item'                  => __( 'Edit Job Employment Type', 'connectoor-jobs-free' ),
-					'update_item'                => __( 'Update Job Employment Type', 'connectoor-jobs-free' ),
-					'view_item'                  => __( 'View Job Employment Type', 'connectoor-jobs-free' ),
-					'add_new_item'               => __( 'Add New Job Employment Type', 'connectoor-jobs-free' ),
-					'new_item_name'              => __( 'New Job Employment Type', 'connectoor-jobs-free' ),
-					'separate_items_with_commas' => __( 'Separate Job Employment Types with commas', 'connectoor-jobs-free' ),
-					'add_or_remove_items'        => __( 'Add or remove Job Employment Types', 'connectoor-jobs-free' ),
-					'choose_from_most_used'      => __( 'Choose from the most used Job Employment Types', 'connectoor-jobs-free' ),
-					'not_found'                  => __( 'No Job Employment Types found.', 'connectoor-jobs-free' ),
-					'no_terms'                   => __( 'No Job Employment Types', 'connectoor-jobs-free' ),
-					'menu_name'                  => __( 'Job Employment Types', 'connectoor-jobs-free' ),
-					'items_list_navigation'      => __( 'Job Employment Types list navigation', 'connectoor-jobs-free' ),
-					'items_list'                 => __( 'Job Employment Types list', 'connectoor-jobs-free' ),
-					'most_used'                  => _x( 'Most Used', 'Employment Type', 'connectoor-jobs-free' ),
-					'back_to_items'              => __( '&larr; Back to Job Employment Types', 'connectoor-jobs-free' ),
+					'name'                       => __( 'Job Employment Types', 'connectoor-jobs' ),
+					'singular_name'              => _x( 'Job Employment Type', 'taxonomy general name', 'connectoor-jobs' ),
+					'search_items'               => __( 'Search Job Employment Types', 'connectoor-jobs' ),
+					'popular_items'              => __( 'Popular Job Employment Types', 'connectoor-jobs' ),
+					'all_items'                  => __( 'All Job Employment Types', 'connectoor-jobs' ),
+					'parent_item'                => __( 'Parent Job Employment Type', 'connectoor-jobs' ),
+					'parent_item_colon'          => __( 'Parent Job Employment Type:', 'connectoor-jobs' ),
+					'edit_item'                  => __( 'Edit Job Employment Type', 'connectoor-jobs' ),
+					'update_item'                => __( 'Update Job Employment Type', 'connectoor-jobs' ),
+					'view_item'                  => __( 'View Job Employment Type', 'connectoor-jobs' ),
+					'add_new_item'               => __( 'Add New Job Employment Type', 'connectoor-jobs' ),
+					'new_item_name'              => __( 'New Job Employment Type', 'connectoor-jobs' ),
+					'separate_items_with_commas' => __( 'Separate Job Employment Types with commas', 'connectoor-jobs' ),
+					'add_or_remove_items'        => __( 'Add or remove Job Employment Types', 'connectoor-jobs' ),
+					'choose_from_most_used'      => __( 'Choose from the most used Job Employment Types', 'connectoor-jobs' ),
+					'not_found'                  => __( 'No Job Employment Types found.', 'connectoor-jobs' ),
+					'no_terms'                   => __( 'No Job Employment Types', 'connectoor-jobs' ),
+					'menu_name'                  => __( 'Job Employment Types', 'connectoor-jobs' ),
+					'items_list_navigation'      => __( 'Job Employment Types list navigation', 'connectoor-jobs' ),
+					'items_list'                 => __( 'Job Employment Types list', 'connectoor-jobs' ),
+					'most_used'                  => _x( 'Most Used', 'Employment Type', 'connectoor-jobs' ),
+					'back_to_items'              => __( '&larr; Back to Job Employment Types', 'connectoor-jobs' ),
 				],
 				'show_in_rest'      => true,
 				'rest_base'         => 'connectoor_tax_job_emp_type',
@@ -81,12 +81,12 @@ class EmploymentType {
 	public function updated_messages( $messages ) {
 		$messages['connectoor_tax_job_type Category'] = [
 			0 => '', // Unused. Messages start at index 1.
-			1 => __( 'Job Employment Type added.', 'connectoor-jobs-free' ),
-			2 => __( 'Job Employment Type deleted.', 'connectoor-jobs-free' ),
-			3 => __( 'Job Employment Type updated.', 'connectoor-jobs-free' ),
-			4 => __( 'Job Employment Type not added.', 'connectoor-jobs-free' ),
-			5 => __( 'Job Employment Type not updated.', 'connectoor-jobs-free' ),
-			6 => __( 'Job Employment Types deleted.', 'connectoor-jobs-free' ),
+			1 => __( 'Job Employment Type added.', 'connectoor-jobs' ),
+			2 => __( 'Job Employment Type deleted.', 'connectoor-jobs' ),
+			3 => __( 'Job Employment Type updated.', 'connectoor-jobs' ),
+			4 => __( 'Job Employment Type not added.', 'connectoor-jobs' ),
+			5 => __( 'Job Employment Type not updated.', 'connectoor-jobs' ),
+			6 => __( 'Job Employment Types deleted.', 'connectoor-jobs' ),
 		];
 
 		return $messages;

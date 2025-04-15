@@ -133,9 +133,9 @@ class AssetsLoader {
 			);
 		}
 
-		wp_set_script_translations( 'connectoor-jobs-frontend', 'connectoor-jobs-free', plugin_dir_path( CONNECTOOR_JOBS_FILE ) . 'languages' );
-		wp_set_script_translations( 'connectoor-jobs-editor', 'connectoor-jobs-free', plugin_dir_path( CONNECTOOR_JOBS_FILE ) . 'languages' );
-		wp_set_script_translations( 'connectoor-jobs-admin-settings', 'connectoor-jobs-free', plugin_dir_path( CONNECTOOR_JOBS_FILE ) . 'languages' );
+		wp_set_script_translations( 'connectoor-jobs-frontend', 'connectoor-jobs', plugin_dir_path( CONNECTOOR_JOBS_FILE ) . 'languages' );
+		wp_set_script_translations( 'connectoor-jobs-editor', 'connectoor-jobs', plugin_dir_path( CONNECTOOR_JOBS_FILE ) . 'languages' );
+		wp_set_script_translations( 'connectoor-jobs-admin-settings', 'connectoor-jobs', plugin_dir_path( CONNECTOOR_JOBS_FILE ) . 'languages' );
 	}
 
 	/**

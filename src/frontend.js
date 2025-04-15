@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// Prüfe, ob das Datum heute oder in der Vergangenheit liegt
 		if (jobDate <= today) {
-			lastField.textContent = __('now','connectoor-jobs-free');
+			lastField.textContent = __('now','connectoor-jobs');
 		}
 	});
 });
@@ -45,7 +45,8 @@ jQuery(document).ready(function ($) {
 					return {
 						action: 'connectoor_jobs_search_jobs',
 						q: params.term,
-						categories: searchVars.categoriesTerms
+						categories: searchVars.categoriesTerms,
+						nonce: searchVars.nonce
 					};
 				},
 				processResults: function (data) {
@@ -77,7 +78,8 @@ jQuery(document).ready(function ($) {
 					action: 'connectoor_jobs_search_jobs',
 					q: searchTerm,
 					ids: selectedIds,
-					categories: searchVars.categoriesTerms
+					categories: searchVars.categoriesTerms,
+					nonce: searchVars.nonce
 				},
 				success: function (data) {
 					const queryLoopContainer = $('.wp-block-query');

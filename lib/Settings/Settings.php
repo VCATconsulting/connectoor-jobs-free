@@ -48,8 +48,8 @@ class Settings {
 	 */
 	public function add_options_page() {
 		add_options_page(
-			__( 'Connectoor Jobs Settings', 'connectoor-jobs-free' ),
-			__( 'Connectoor Jobs Settings', 'connectoor-jobs-free' ),
+			__( 'Connectoor Jobs Settings', 'connectoor-jobs' ),
+			__( 'Connectoor Jobs Settings', 'connectoor-jobs' ),
 			'manage_options',
 			'connectoor-jobs-settings',
 			[ $this, 'options_page' ]

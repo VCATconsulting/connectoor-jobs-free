@@ -27,8 +27,8 @@ class PredefinedPattern {
 		register_block_pattern(
 			'connectoor-jobs/job-apply-button',
 			[
-				'title'       => __( 'Apply Button', 'connectoor-jobs-free' ),
-				'description' => _x( 'Add a pre defined template for the apply button.', 'Block pattern description', 'connectoor-jobs-free' ),
+				'title'       => __( 'Apply Button', 'connectoor-jobs' ),
+				'description' => _x( 'Add a pre defined template for the apply button.', 'Block pattern description', 'connectoor-jobs' ),
 				'categories'  => [ 'connectoor' ],
 				'content'     => '<!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"branding-color"} --><div class="wp-block-button branding-color"><a class="wp-block-button__link wp-element-button" href="">Jetzt bewerben</a></div>
@@ -41,8 +41,8 @@ class PredefinedPattern {
 		register_block_pattern(
 			'connectoor-jobs/job-custom-post-query-loop',
 			[
-				'title'       => __( 'Connectoor Jobs Query Loop', 'connectoor-jobs-free' ),
-				'description' => _x( 'Displays a list of Jobs with meta fields and search', 'Block pattern description', 'connectoor-jobs-free' ),
+				'title'       => __( 'Connectoor Jobs Query Loop', 'connectoor-jobs' ),
+				'description' => _x( 'Displays a list of Jobs with meta fields and search', 'Block pattern description', 'connectoor-jobs' ),
 				'categories'  => [ 'connectoor' ],
 				'content'     => '<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide"> <!-- wp:connectoor-jobs/job-search /--><!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"connectoor_jobs","order":"desc","orderBy":"date"},"className":"connectoor-jobs-list"} -->
@@ -81,7 +81,7 @@ class PredefinedPattern {
 		 */
 		register_block_pattern_category(
 			'connectoor',
-			[ 'label' => __( 'Connectoor', 'connectoor-jobs-free' ) ]
+			[ 'label' => __( 'Connectoor', 'connectoor-jobs' ) ]
 		);
 	}
 }
