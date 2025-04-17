@@ -24,8 +24,8 @@ class AddQuickLink {
 	public function init() {
 		add_filter( 'views_edit-connectoor_jobs', [ $this, 'add_new_view_tab' ] );
 		add_filter( 'query_vars', [ $this, 'add_query_var' ] );
-		add_filter( 'pre_get_posts', [ $this, 'list_manually_add_jobs' ] );
 		add_action( 'current_screen', [ $this, 'detecting_current_screen' ] );
+		add_filter( 'pre_get_posts', [ $this, 'list_manually_add_jobs' ] );
 	}
 
 	/**
@@ -66,7 +66,7 @@ class AddQuickLink {
 
 		$current_user = wp_get_current_user();
 
-		if ( 'edit.php' !== $pagenow || 'connectoor_jobs' !== $this->current_screen->post_type || ! is_admin() || ! isset( $query->query_vars['connectoor_jobs_add_type'] ) ) {
+		if ( ! is_admin() || 'edit.php' !== $pagenow || 'connectoor_jobs' !== $this->current_screen->post_type || ! isset( $query->query_vars['connectoor_jobs_add_type'] ) ) {
 			return $query;
 		}
 
