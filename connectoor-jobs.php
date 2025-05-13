@@ -10,7 +10,7 @@
  * Plugin Name: Connectoor Jobs
  * Plugin URI: https://github.com/VCATconsulting/connectoor-jobs
  * Description: Plugin for creating jobs in WordPress
- * Version: 1.2.6
+ * Version: 1.2.8
  * Author: VCAT Consulting GmbH - Team WordPress
  * Author URI: https://www.vcat.de
  * Text Domain: connectoor-jobs
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CONNECTOOR_JOBS_VERSION', '1.2.6' );
+define( 'CONNECTOOR_JOBS_VERSION', '1.2.8' );
 define( 'CONNECTOOR_JOBS_FILE', __FILE__ );
 define( 'CONNECTOOR_JOBS_PATH', plugin_dir_path( CONNECTOOR_JOBS_FILE ) );
 define( 'CONNECTOOR_JOBS_URL', plugin_dir_url( CONNECTOOR_JOBS_FILE ) );
@@ -71,7 +71,7 @@ function connectoor_jobs_min_php_version_error() {
 }
 
 /**
- * Show a admin notice error message, if the PHP version is too low
+ * Show a admin notice error message if the PHP version is too low
  */
 function connectoor_jobs_autoloader_missing() {
 	echo '<div class="error"><p>';

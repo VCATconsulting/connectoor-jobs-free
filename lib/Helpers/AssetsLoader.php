@@ -148,7 +148,7 @@ class AssetsLoader {
 		$branding_color = get_option( '_connectoor_jobs_branding_color' );
 
 		if ( ! $branding_color ) {
-			$branding_color = '#0073aa';
+			$branding_color = sanitize_hex_color( '#0073aa' );
 		}
 
 		/*
@@ -157,7 +157,7 @@ class AssetsLoader {
 		$custom_css = sprintf(
 		// Translators: %s is the branding color.
 			esc_html( ':root { --connectoor-jobs-branding-color: %s; }' ),
-			$branding_color
+			esc_attr( $branding_color )
 		);
 
 		/*

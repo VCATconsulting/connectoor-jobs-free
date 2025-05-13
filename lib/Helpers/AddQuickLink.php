@@ -12,29 +12,12 @@ namespace CONNECTOOR_JOBS\Helpers;
  */
 class AddQuickLink {
 	/**
-	 * The current screen object.
-	 *
-	 * @var object
-	 */
-	private object $current_screen;
-
-	/**
 	 * Initialize the helper
 	 */
 	public function init() {
 		add_filter( 'views_edit-connectoor_jobs', [ $this, 'add_new_view_tab' ] );
 		add_filter( 'query_vars', [ $this, 'add_query_var' ] );
-		add_action( 'current_screen', [ $this, 'detecting_current_screen' ] );
 		add_filter( 'pre_get_posts', [ $this, 'list_manually_add_jobs' ] );
-	}
-
-	/**
-	 * Detecting the current screen.
-	 */
-	public function detecting_current_screen() {
-		global $current_screen;
-
-		$this->current_screen = $current_screen;
 	}
 
 	/**
@@ -64,9 +47,10 @@ class AddQuickLink {
 	public function list_manually_add_jobs( $query ) {
 		global $pagenow;
 
+		$current_screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
 		$current_user = wp_get_current_user();
 
-		if ( ! is_admin() || 'edit.php' !== $pagenow || 'connectoor_jobs' !== $this->current_screen->post_type || ! isset( $query->query_vars['connectoor_jobs_add_type'] ) ) {
+		if (!is_admin() || 'edit.php' !== $pagenow || !$current_screen instanceof \WP_Screen || 'connectoor_jobs' !== $current_screen->post_type || !isset($query->query_vars['connectoor_jobs_add_type'])) {
 			return $query;
 		}
 
