@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
-import { PanelRow, TextControl } from '@wordpress/components';
+import { PanelRow, TextControl, ToggleControl } from '@wordpress/components';
 
 const MetaBox = ( { postType, metaFields, setMetaFields } ) => {
 
@@ -107,9 +107,10 @@ const MetaBox = ( { postType, metaFields, setMetaFields } ) => {
 				/>
 			</PanelRow>
 			<PanelRow>
-				<TextControl
+				<ToggleControl
 					value={ metaFields._connectoor_jobs_deadline_visible }
 					label={ __( "Deadline Visible", "connectoor-jobs" ) }
+					checked={ metaFields._connectoor_jobs_deadline_visible }
 					onChange={ ( value ) => setMetaFields( { _connectoor_jobs_deadline_visible: value } ) }
 				/>
 			</PanelRow>

@@ -39,15 +39,10 @@ class SearchAndBlocks {
 			]
 		);
 
-		register_block_type(
-			'connectoor-jobs/meta-field',
+		register_block_type_from_metadata(
+			CONNECTOOR_JOBS_PATH . 'build/blocks/meta-field',
 			[
 				'render_callback' => [ $this, 'connectoor_jobs_render_meta_field_block' ],
-				'attributes'      => [
-					'field' => [
-						'type' => 'string',
-					],
-				],
 			]
 		);
 	}
@@ -63,9 +58,37 @@ class SearchAndBlocks {
 		}
 
 		$field = $attributes['field'];
-		$value = get_post_meta( get_the_ID(), $field, true );
 
-		return sprintf( '<div class="wp-block-connectoor-jobs-meta-field">%s</div>', esc_html( $value ) );
+		if ( '_connectoor_jobs_begin' === $field ) {
+			$deadline         = get_post_meta( get_the_ID(), '_connectoor_jobs_deadline', true );
+			$deadline_visible = get_post_meta( get_the_ID(), '_connectoor_jobs_deadline_visible', true );
+			$begin            = get_post_meta( get_the_ID(), '_connectoor_jobs_begin', true );
+			$begin_raw        = get_post_meta( get_the_ID(), '_connectoor_jobs_begin_raw', true );
+
+			$begin_check = (int) strtotime( gmdate( 'd.m.Y' ) ) < (int) $begin_raw;
+			if ( empty( $begin ) || 0 === $begin_check ) {
+				$begin = esc_html__( 'now', 'connectoor-jobs' );
+			}
+
+			if ( $deadline_visible && ! empty( $deadline ) ) {
+				$value = sprintf(
+				// translators: %s: date.
+					__( 'until: %s', 'connectoor-jobs' ),
+					esc_html( $deadline )
+				);
+			} else {
+				$value = $begin;
+			}
+		} else {
+			$value = get_post_meta( get_the_ID(), $field, true );
+		}
+
+		/**
+		 * Add a filter to customize the output of the meta field block.
+		 */
+		$value = apply_filters( 'connectoor_jobs_render_meta_field_block_value', $value, $field );
+
+		return sprintf( '<div class="wp-block-connectoor-jobs-meta-field" data-format="%s">%s</div>', esc_html( $value ), esc_html( $value ) );
 	}
 
 	/**
@@ -120,16 +143,19 @@ class SearchAndBlocks {
 				'placeholderText' => esc_html__( 'Search Jobs...', 'connectoor-jobs' ),
 				'readMoreText'    => esc_html__( 'read more', 'connectoor-jobs' ),
 				'nonce'           => wp_create_nonce( 'connectoor_jobs_search_nonce' ),
+				'page_id'         => get_the_ID(),
 			]
 		);
 
 		ob_start();
 		?>
 		<div class="connectoor-jobs-search-field-wrapper">
+			<label for="connectoor-job-search" class="screen-reader-text"><?php esc_html_e( 'Search Jobs', 'connectoor-jobs' ); ?></label>
 			<input
+				aria-label="Search Jobs"
 				type="text"
-				id="select2-search"
-				class="select2-search"
+				id="connectoor-job-search"
+				class="connectoor-job-search"
 				placeholder="<?php esc_html_e( 'Search Jobs...', 'connectoor-jobs' ); ?>"
 				value="<?php echo esc_attr( $attributes['searchTerm'] ); ?>"/>
 		</div>
@@ -143,6 +169,7 @@ class SearchAndBlocks {
 	 * @return void
 	 */
 	public function connectoor_jobs_ajax_search_jobs() {
+		// Verify nonce for security.
 		if ( ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'connectoor_jobs_search_nonce' ) ) {
 			wp_send_json_error( [ 'message' => esc_html__( 'Invalid request', 'connectoor-jobs' ) ], 403 );
 		}
@@ -156,169 +183,190 @@ class SearchAndBlocks {
 		 */
 		$search_query = sanitize_text_field( wp_unslash( $_GET['q'] ) );
 
-		$query_post_ids = isset( $_GET['ids'] ) ? array_unique( array_map( 'absint', $_GET['ids'] ) ) : '';
+		$page_id  = isset( $_GET['page_id'] ) ? (int) $_GET['page_id'] : 0;
+		$paged    = isset( $_GET['page'] ) ? (int) $_GET['page'] : 1;
+		$per_page = isset( $_GET['per_page'] ) ? (int) $_GET['per_page'] : 10;
 
+		// Parse category filters from block context.
 		$categories_query = [];
-
 		if ( isset( $_GET['categories'] ) && is_array( $_GET['categories'] ) ) {
-			$categories = wp_unslash( $_GET['categories'] ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$categories_raw = wp_unslash( $_GET['categories'] ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 			/*
 			 * Sanitize the categories.
 			 */
-			foreach ( $categories as $category => $cat_ids ) {
+			foreach ( $categories_raw as $category => $cat_ids ) {
 				$category                      = sanitize_text_field( $category );
 				$categories_query[ $category ] = array_unique( array_map( 'intval', $cat_ids ) );
 			}
 		}
 
-		$tax_query = $this->get_connectoor_jobs_tax_query( $categories_query );
+		// Base query arguments with filters.
+		$args = [
+			'post_type'      => 'connectoor_jobs',
+			'post_status'    => 'publish',
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			'tax_query'      => [ 'relation' => 'AND' ], // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			'meta_query'     => [ 'relation' => 'AND' ], // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			'posts_per_page' => - 1, // ALLE IDs holen!
+		];
 
 		/*
-		 * Get the data from the post, meta and taxonomies.
-		 */
-		if ( ! empty( $query_post_ids ) ) {
-			$args_post = [
-				'post_type'   => 'connectoor_jobs',
-				'post_status' => 'publish',
-				'post__in'    => $query_post_ids,
-				'tax_query'   => $tax_query, //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-			];
-		} else {
-			$args_post = [
-				'post_type'   => 'connectoor_jobs',
-				'post_status' => 'publish',
-				's'           => $search_query,
-				'tax_query'   => $tax_query, //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-			];
+		* Additional fixed taxonomy filters from block context.
+		*/
+		$block_tax_query = $this->get_connectoor_jobs_tax_query( $categories_query );
+		if ( $block_tax_query ) {
+			$args['tax_query'] = array_merge( $args['tax_query'] ?? [], $block_tax_query ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		}
 
-		$data_post = get_posts( $args_post );
+		/*
+		 * Primary query for filtered results.
+		 */
+		$query           = new \WP_Query( $args );
+		$post_ids_filter = wp_list_pluck( $query->posts, 'ID' );
+		$post_ids_search = [];
 
 		/*
-		 * Get the data from the meta.
+		 * Optional fulltext search across meta fields and taxonomies.
 		 */
-		$args_meta = [
-			'post_type'   => 'connectoor_jobs',
-			'post_status' => 'publish',
-			'meta_query'  => [ //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-				'relation' => 'OR',
+		if ( $search_query ) {
+			$title_ids = get_posts(
 				[
-					'key'     => '_connectoor_jobs_city',
-					'value'   => $search_query,
-					'compare' => 'LIKE',
-				],
-				[
-					'key'     => '_connectoor_jobs_state',
-					'value'   => $search_query,
-					'compare' => 'LIKE',
-				],
-				[
-					'key'     => '_connectoor_jobs_jobtype',
-					'value'   => $search_query,
-					'compare' => 'LIKE',
-				],
-				[
-					'key'     => '_connectoor_jobs_postalcode',
-					'value'   => $search_query,
-					'compare' => 'LIKE',
-				],
-				[
-					'key'     => '_connectoor_jobs_intern_title',
-					'value'   => $search_query,
-					'compare' => 'LIKE',
-				],
-				[
-					'key'     => '_connectoor_jobs_company',
-					'value'   => $search_query,
-					'compare' => 'LIKE',
-				],
-			],
-			'tax_query'   => $tax_query, //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-		];
+					'post_type'      => 'connectoor_jobs',
+					'post_status'    => 'publish',
+					'fields'         => 'ids',
+					's'              => $search_query,
+					'posts_per_page' => - 1,
+				]
+			);
 
-		$data_meta = get_posts( $args_meta );
-
-		/*
-		 * Get the term ids by the search query.
-		 */
-		$term_ids = get_terms(
-			[
-				'name__like' => $search_query,
-				'fields'     => 'ids',
-			]
-		);
-
-		/*
-		 * Get the data from the taxonomies.
-		 */
-		$args_tax = [
-			'post_type'   => 'connectoor_jobs',
-			'post_status' => 'publish',
-			'tax_query'   => [ //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-				'relation' => 'OR',
+			$meta_ids = get_posts(
 				[
-					'taxonomy' => 'connectoor_tax_job_category',
-					'terms'    => $term_ids,
-					'field'    => 'term_id',
-				],
+					'post_type'      => 'connectoor_jobs',
+					'post_status'    => 'publish',
+					'posts_per_page' => - 1,
+					'fields'         => 'ids',
+					'meta_query'     => [ //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+						'relation' => 'OR',
+						[
+							'key'     => '_connectoor_jobs_company',
+							'value'   => $search_query,
+							'compare' => 'LIKE',
+						],
+						[
+							'key'     => '_connectoor_jobs_intern_title',
+							'value'   => $search_query,
+							'compare' => 'LIKE',
+						],
+						[
+							'key'     => '_connectoor_jobs_state',
+							'value'   => $search_query,
+							'compare' => 'LIKE',
+						],
+						[
+							'key'     => '_connectoor_jobs_postalcode',
+							'value'   => $search_query,
+							'compare' => 'LIKE',
+						],
+						[
+							'key'     => '_connectoor_jobs_city',
+							'value'   => $search_query,
+							'compare' => 'LIKE',
+						],
+						[
+							'key'     => '_connectoor_jobs_jobtype',
+							'value'   => $search_query,
+							'compare' => 'LIKE',
+						],
+					],
+				]
+			);
+
+			/*
+			 * Get the term ids by the search query.
+			 */
+			$term_ids = get_terms(
 				[
-					'taxonomy' => 'connectoor_tax_job_emp_type',
-					'terms'    => $term_ids,
-					'field'    => 'term_id',
-				],
-			],
-		];
+					'taxonomy'   => [ 'connectoor_tax_job_category', 'connectoor_tax_job_emp_type' ],
+					'name__like' => $search_query,
+					'fields'     => 'ids',
+				]
+			);
 
-		$data_tax = get_posts( $args_tax );
+			$tax_ids = [];
+			if ( $term_ids ) {
+				$tax_query = [
+					'post_type'      => 'connectoor_jobs',
+					'post_status'    => 'publish',
+					'fields'         => 'ids',
+					'posts_per_page' => - 1,
+					'tax_query'      => [ //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+						'relation' => 'OR',
+						[
+							'taxonomy' => 'connectoor_tax_job_category',
+							'field'    => 'term_id',
+							'terms'    => $term_ids,
+						],
+						[
+							'taxonomy' => 'connectoor_tax_job_emp_type',
+							'field'    => 'term_id',
+							'terms'    => $term_ids,
+						],
+					],
+				];
+				$tax_ids   = get_posts( $tax_query );
+			}
 
-		/*
-		 * Merge all the data.
-		 */
-		$all_data = array_merge( $data_post, $data_meta, $data_tax );
+			$post_ids_search = array_unique( array_merge( $title_ids, $meta_ids, $tax_ids ) );
+		}
 
-		/*
-		 * Get the unique post ids.
-		 */
-		$post_ids = array_unique( wp_list_pluck( $all_data, 'ID' ) );
+		if ( $search_query ) {
+			if ( ! empty( $post_ids_filter ) ) {
+				$post_ids = array_intersect( $post_ids_filter, $post_ids_search );
+			} else {
+				$post_ids = [];
+			}
+		} else {
+			$post_ids = $post_ids_filter;
+		}
 
 		/*
 		 * Get the final data.
 		 */
 		if ( empty( $post_ids ) ) {
-			wp_send_json( [] );
+			wp_send_json(
+				[
+					'results'     => [],
+					'total_found' => 0,
+					'max_pages'   => 0,
+					'paged'       => $paged,
+				]
+			);
 		}
 
+		// Final query to fetch matching results.
 		$args_final = [
-			'post_type'   => 'connectoor_jobs',
-			'post_status' => 'publish',
-			'post__in'    => $post_ids,
-			'order'       => 'ASC',
-			'orderby'     => 'title',
+			'post_type'              => 'connectoor_jobs',
+			'post_status'            => 'publish',
+			'post__in'               => $post_ids,
+			'orderby'                => 'post__in',
+			'posts_per_page'         => $per_page,
+			'paged'                  => $paged,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
 		];
 
-		$query = new \WP_Query( $args_final );
-
-		$results = [];
+		$query_final = new \WP_Query( $args_final );
 
 		/*
 		 * Get the final results.
 		 */
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
+		$results = [];
 
-				$deadline         = get_post_meta( get_the_ID(), '_connectoor_jobs_deadline', true );
-				$deadline_visible = get_post_meta( get_the_ID(), '_connectoor_jobs_deadline_visible', true );
-				$begin            = get_post_meta( get_the_ID(), '_connectoor_jobs_begin', true );
-
-				if ( empty( $begin ) || strtotime( gmdate( 'd.m.Y' ) ) < strtotime( $begin ) ) {
-					$begin = esc_html__( 'now', 'connectoor-jobs' );
-				}
-
-				$time = true === $deadline_visible ? $deadline : $begin;
-
-				$company = get_post_meta( get_the_ID(), '_connectoor_jobs_company', true );
+		if ( $query_final->have_posts() ) {
+			while ( $query_final->have_posts() ) {
+				$query_final->the_post();
 
 				/*
 				 * Build the results.
@@ -327,15 +375,22 @@ class SearchAndBlocks {
 					'ID'         => get_the_ID(),
 					'post_title' => get_the_title(),
 					'link'       => get_the_permalink(),
-					'time'       => $time,
-					'location'   => get_post_meta( get_the_ID(), '_connectoor_jobs_city', true ),
-					'job_type'   => get_post_meta( get_the_ID(), '_connectoor_jobs_jobtype', true ),
-					'company'    => $company,
+					'html'       => $this->render_connectoor_jobs_post_template( get_the_ID(), $page_id ),
 				];
 			}
 		}
 
-		wp_send_json( $results );
+		/*
+		 * Prepare the response.
+		 */
+		$response = [
+			'results'     => $results,
+			'total_found' => $query_final->found_posts,
+			'max_pages'   => $query_final->max_num_pages,
+			'paged'       => $paged,
+		];
+
+		wp_send_json( $response );
 	}
 
 	/**
@@ -352,12 +407,12 @@ class SearchAndBlocks {
 		 * Check if the categories are set.
 		 */
 		if ( is_array( $categories_query ) ) {
-			if ( ( isset( $categories_query['connectoor_tax_job_category'] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) ||
-				( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) ) {
+			if ( ( isset( $categories_query['connectoor_tax_job_category'][0] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) ||
+				( isset( $categories_query['connectoor_tax_job_emp_type'][0] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) ) {
 				/*
 				 * Check if the connectoor_tax_job_category category is set.
 				 */
-				if ( isset( $categories_query['connectoor_tax_job_category'] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) {
+				if ( isset( $categories_query['connectoor_tax_job_category'][0] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) {
 					$tax_query[] = [
 						[
 							'taxonomy' => 'connectoor_tax_job_category',
@@ -370,7 +425,7 @@ class SearchAndBlocks {
 				/*
 				 * Check if the connectoor_tax_job_emp_type category is set.
 				 */
-				if ( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) {
+				if ( isset( $categories_query['connectoor_tax_job_emp_type'][0] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) {
 					$tax_query[] = [
 						[
 							'taxonomy' => 'connectoor_tax_job_emp_type',
@@ -384,8 +439,8 @@ class SearchAndBlocks {
 			/*
 			 * Check if both categories are set.
 			 */
-			if ( ( isset( $categories_query['connectoor_tax_job_category'] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) &&
-				( isset( $categories_query['connectoor_tax_job_emp_type'] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) ) {
+			if ( ( isset( $categories_query['connectoor_tax_job_category'][0] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) &&
+				( isset( $categories_query['connectoor_tax_job_emp_type'][0] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) ) {
 				$tax_query[] = [
 					[
 						'taxonomy' => 'connectoor_tax_job_category',
@@ -405,5 +460,106 @@ class SearchAndBlocks {
 		}
 
 		return $tax_query;
+	}
+
+	/**
+	 * Render the results for the AJAX search.
+	 *
+	 * @param int $post_id      The post ID to render.
+	 * @param int $block_page_id The page ID where the block is located.
+	 *
+	 * @return string
+	 */
+	public function render_connectoor_jobs_post_template( int $post_id, int $block_page_id ) {
+		$page_post = get_post( $block_page_id );
+		if ( ! $page_post ) {
+			return '';
+		}
+
+		$blocks  = parse_blocks( $page_post->post_content );
+		$pattern = 'connectoor-jobs/job-custom-post-query-loop';
+
+		$templates = $this->connectoor_jobs_find_post_templates_in_blocks( $blocks, $post_id, $pattern, true );
+		if ( ! empty( $templates ) ) {
+			return $templates[0];
+		}
+		// Fallback.
+		$templates_fallback = $this->connectoor_jobs_find_post_templates_in_blocks( $blocks, $post_id, '', false );
+		return $templates_fallback[0] ?? '';
+	}
+
+	/**
+	 * Search for post templates in blocks.
+	 *
+	 * @param array  $blocks       The blocks to search in.
+	 * @param int    $post_id      The post ID to render.
+	 * @param string $pattern_name Optional. The pattern name to match.
+	 * @param bool   $require_pattern true = nur rendern, wenn block.attrs.metadata.patternName exakt passt.
+	 *
+	 * @return array
+	 */
+	private function connectoor_jobs_find_post_templates_in_blocks( array $blocks, int $post_id, string $pattern_name = '', bool $require_pattern = true ): array {
+		$results = [];
+
+		foreach ( $blocks as $block ) {
+			if ( ! is_array( $block ) ) {
+				continue;
+			}
+
+			$has_pattern_meta   = isset( $block['attrs']['metadata']['patternName'] );
+			$current_pattern    = $has_pattern_meta ? $block['attrs']['metadata']['patternName'] : null;
+			$pattern_matches    = '' !== $pattern_name && $current_pattern === $pattern_name;
+			$pattern_constraint = $require_pattern ? $pattern_matches : true; // Fall back: if not required, always true.
+
+			// If we are currently on a container (e.g. core/group or something),
+			// we only check strictly for pattern if $require_pattern = true and $pattern_name
+			// is not empty.
+			if ( $pattern_constraint ) {
+				// Try to find and render a core/query → core/post-template structure within this container.
+				if ( ! empty( $block['innerBlocks'] ) ) {
+					foreach ( $block['innerBlocks'] as $inner ) {
+						if ( isset( $inner['blockName'] ) && 'core/query' === $inner['blockName'] && ! empty( $inner['innerBlocks'] ) ) {
+							foreach ( $inner['innerBlocks'] as $sub ) {
+								if ( isset( $sub['blockName'] ) && 'core/post-template' === $sub['blockName'] ) {
+									$render_html = '';
+
+									$post = get_post( $post_id );
+
+									try {
+										if ( $post instanceof \WP_Post ) {
+											setup_postdata( $post ); // set global $post context.
+										}
+
+										if ( ! empty( $sub['innerBlocks'] ) ) {
+											foreach ( $sub['innerBlocks'] as $template_block ) {
+												$render_html .= render_block( $template_block );
+											}
+										}
+									} finally {
+										if ( $post instanceof \WP_Post ) {
+											wp_reset_postdata(); // revert $post global to previous state.
+										}
+									}
+
+									if ( '' !== $render_html ) {
+										$results[] = $render_html;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			// Recurse into inner blocks.
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$results = array_merge(
+					$results,
+					$this->connectoor_jobs_find_post_templates_in_blocks( $block['innerBlocks'], $post_id, $pattern_name, $require_pattern )
+				);
+			}
+		}
+
+		return $results;
 	}
 }

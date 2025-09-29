@@ -145,7 +145,7 @@ class AssetsLoader {
 		/*
 		 * Get the branding color from the settings.
 		 */
-		$branding_color = get_option( '_connectoor_jobs_branding_color' );
+		$branding_color = $this->sanitize_hex_color_8( get_option( '_connectoor_jobs_branding_color' ) );
 
 		if ( ! $branding_color ) {
 			$branding_color = sanitize_hex_color( '#0073aa' );
@@ -168,14 +168,48 @@ class AssetsLoader {
 	}
 
 	/**
+	 * Sanitizes a hex color including 8-digit (with alpha).
+	 *
+	 * @param string|null $color Color to sanitize.
+	 *
+	 * @return string|null Sanitized color (like '#rrggbbaa') or null if not valid.
+	 */
+	private function sanitize_hex_color_8( $color ) {
+		if ( ! is_string( $color ) ) {
+			return null;
+		}
+		$color = trim( $color );
+
+		// Accept 8-digit.
+		if ( preg_match( '/^#([A-Fa-f0-9]{8})$/', $color ) ) {
+			return strtolower( $color );
+		}
+
+		// Accept 4-digit (#RGBA) -> expand to 8-digit.
+		if ( preg_match( '/^#([A-Fa-f0-9]{4})$/', $color, $m ) ) {
+			$r = $m[1][0];
+			$g = $m[1][1];
+			$b = $m[1][2];
+			$a = $m[1][3];
+			return strtolower( "#{$r}{$r}{$g}{$g}{$b}{$b}{$a}{$a}" );
+		}
+
+		// Fallback: 6/3-digit via core (no alpha).
+		if ( function_exists( 'sanitize_hex_color' ) ) {
+			$hex = sanitize_hex_color( $color ); // returns '#rrggbb' or null.
+			return $hex ? $hex : null;
+		}
+
+		return null;
+	}
+
+	/**
 	 * Enqueue the block editor assets.
 	 */
 	public function enqueue_block_editor_assets() {
 		wp_enqueue_script( 'connectoor-jobs-editor' );
 		wp_enqueue_style( 'connectoor-jobs-editor' );
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'select2' );
-		wp_enqueue_style( 'select2' );
 	}
 
 	/**
@@ -185,8 +219,7 @@ class AssetsLoader {
 		wp_enqueue_script( 'connectoor-jobs-frontend' );
 		wp_enqueue_style( 'connectoor-jobs-frontend' );
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'select2' );
-		wp_enqueue_style( 'select2' );
+		wp_enqueue_script( 'jquery-ui-autocomplete' );
 	}
 
 	/**

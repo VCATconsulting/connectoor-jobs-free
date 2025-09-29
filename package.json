@@ -35,6 +35,6 @@
     "@wordpress/plugins": "^6.19.1",
     "classnames": "^2.5.1",
     "lodash": "^4.17.21",
-    "select2": "^4.1.0-rc.0"
+    "jquery-ui-dist": "^1.13.2"
 	}
 }

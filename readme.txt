@@ -4,7 +4,7 @@ Contributors: VCATconsulting, shogathu, nida78
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -100,6 +100,16 @@ The current version of our recruiting software, Connectoor, is specifically deve
 
 
 == Changelog ==
+
+= 1.2.9 =
+
+* fix job display after search, now frontend = backend
+* fix language strings
+* fix escaping
+* fix bug with predefined taxonomies
+* fix bug with branding color
+* remove select2 library and use autocomplete for search field
+* auto create hidden time raw fields
 
 = 1.2.8 =
 

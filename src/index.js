@@ -1,4 +1,3 @@
-import './select2/index.js'
 import { registerPlugin } from '@wordpress/plugins';
 
 
@@ -8,6 +7,8 @@ const { registerBlockType } = wp.blocks;
 import jobs from './components/jobs/jobs';
 import * as jobSearch from './blocks/job-search';
 import * as metaField from './blocks/meta-field';
+
+//import './scss/_editor-styles.scss';
 
 /**
  * Function to register an individual block.

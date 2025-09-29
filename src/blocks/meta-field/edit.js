@@ -2,11 +2,8 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import {
-	BlockControls,
-	InspectorControls,
-} from '@wordpress/block-editor';
-import { PanelBody, TextControl,ToolbarGroup } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, TextControl } from '@wordpress/components';
 
 
 export function Edit(props) {
@@ -15,13 +12,11 @@ export function Edit(props) {
 
 	return (
 		<>
-			<BlockControls>
-				<ToolbarGroup />
-			</BlockControls>
 			<InspectorControls>
-				<PanelBody title="Meta Field Settings">
+				<PanelBody title={__("Meta Field Settings", "connectoor-jobs")}>
 					<TextControl
-						label={__("Meta Field Key","connectoor-jobs")}
+						help={__("Enter the meta field key (e.g. _connectoor_jobs_city)", "connectoor-jobs")}
+						label={__("Meta Field", "connectoor-jobs")}
 						value={field}
 						onChange={(value) => setAttributes({ field: value })}
 					/>

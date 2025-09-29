@@ -9,6 +9,7 @@ return array(
     'CONNECTOOR_JOBS\\Helpers\\AddQuickLink' => $baseDir . '/lib/Helpers/AddQuickLink.php',
     'CONNECTOOR_JOBS\\Helpers\\AssetsLoader' => $baseDir . '/lib/Helpers/AssetsLoader.php',
     'CONNECTOOR_JOBS\\Helpers\\PredefinedPattern' => $baseDir . '/lib/Helpers/PredefinedPattern.php',
+    'CONNECTOOR_JOBS\\Helpers\\SaveManualDate' => $baseDir . '/lib/Helpers/SaveManualDate.php',
     'CONNECTOOR_JOBS\\Helpers\\SearchAndBlocks' => $baseDir . '/lib/Helpers/SearchAndBlocks.php',
     'CONNECTOOR_JOBS\\PostMeta\\JobMeta' => $baseDir . '/lib/PostMeta/JobMeta.php',
     'CONNECTOOR_JOBS\\PostTypes\\ConnectoorJobs' => $baseDir . '/lib/PostTypes/ConnectoorJobs.php',

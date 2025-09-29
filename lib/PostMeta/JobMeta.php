@@ -24,6 +24,7 @@ class JobMeta {
 	public function connectoor_jobs_post_meta() {
 		$metafields = [
 			'_connectoor_jobs_begin',
+			'_connectoor_jobs_begin_raw',
 			'_connectoor_jobs_intern_title',
 			'_connectoor_jobs_referencenumber',
 			'_connectoor_jobs_sourcename',
@@ -37,7 +38,7 @@ class JobMeta {
 			'_connectoor_jobs_postalcode',
 			'_connectoor_jobs_country',
 			'_connectoor_jobs_deadline',
-			'_connectoor_jobs_deadline_visible',
+			'_connectoor_jobs_deadline_raw',
 			'_connectoor_jobs_jobtype',
 			'_connectoor_jobs_employment_duration',
 			'_connectoor_jobs_experience',
@@ -51,6 +52,26 @@ class JobMeta {
 					'show_in_rest'      => true,
 					'single'            => true,
 					'type'              => 'string',
+					'sanitize_callback' => 'sanitize_text_field',
+					'auth_callback'     => function () {
+						return current_user_can( 'edit_posts' );
+					},
+				]
+			);
+		}
+
+		$metafields_toggle = [
+			'_connectoor_jobs_deadline_visible',
+		];
+
+		foreach ( $metafields_toggle as $metafield_toggle ) {
+			register_post_meta(
+				'connectoor_jobs',
+				$metafield_toggle,
+				[
+					'show_in_rest'      => true,
+					'single'            => true,
+					'type'              => 'boolean',
 					'sanitize_callback' => 'sanitize_text_field',
 					'auth_callback'     => function () {
 						return current_user_can( 'edit_posts' );

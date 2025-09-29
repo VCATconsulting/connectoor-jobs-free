@@ -24,6 +24,7 @@ class ComposerStaticInit206b351d446e686d9d10d45439290c67
         'CONNECTOOR_JOBS\\Helpers\\AddQuickLink' => __DIR__ . '/../..' . '/lib/Helpers/AddQuickLink.php',
         'CONNECTOOR_JOBS\\Helpers\\AssetsLoader' => __DIR__ . '/../..' . '/lib/Helpers/AssetsLoader.php',
         'CONNECTOOR_JOBS\\Helpers\\PredefinedPattern' => __DIR__ . '/../..' . '/lib/Helpers/PredefinedPattern.php',
+        'CONNECTOOR_JOBS\\Helpers\\SaveManualDate' => __DIR__ . '/../..' . '/lib/Helpers/SaveManualDate.php',
         'CONNECTOOR_JOBS\\Helpers\\SearchAndBlocks' => __DIR__ . '/../..' . '/lib/Helpers/SearchAndBlocks.php',
         'CONNECTOOR_JOBS\\PostMeta\\JobMeta' => __DIR__ . '/../..' . '/lib/PostMeta/JobMeta.php',
         'CONNECTOOR_JOBS\\PostTypes\\ConnectoorJobs' => __DIR__ . '/../..' . '/lib/PostTypes/ConnectoorJobs.php',
