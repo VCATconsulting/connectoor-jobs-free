@@ -14,7 +14,6 @@ import * as metaField from './blocks/meta-field';
  * Function to register an individual block.
  *
  * @param {Object} block The block to be registered.
- *
  */
 
 registerPlugin( 'connectoor-jobs-job-metadata', {
@@ -26,7 +25,6 @@ registerPlugin( 'connectoor-jobs-job-metadata', {
  * Function to register an individual block.
  *
  * @param {Object} block The block to be registered.
- *
  */
 const registerBlock = ( block ) => {
 	if ( !block ) {

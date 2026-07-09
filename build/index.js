@@ -154,10 +154,41 @@ function Edit(props) {
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Meta Field Settings", "connectoor-jobs")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter the meta field key (e.g. _connectoor_jobs_city)", "connectoor-jobs"),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Meta Field", "connectoor-jobs"),
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select the meta field to display.', 'connectoor-jobs'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Meta Field', 'connectoor-jobs'),
     value: field,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Begin', 'connectoor-jobs'),
+      value: '_connectoor_jobs_begin'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Company', 'connectoor-jobs'),
+      value: '_connectoor_jobs_company'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Location Address', 'connectoor-jobs'),
+      value: '_connectoor_jobs_location_address'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('City', 'connectoor-jobs'),
+      value: '_connectoor_jobs_city'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('State', 'connectoor-jobs'),
+      value: '_connectoor_jobs_state'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Postalcode', 'connectoor-jobs'),
+      value: '_connectoor_jobs_postalcode'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Country', 'connectoor-jobs'),
+      value: '_connectoor_jobs_country'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Jobtype', 'connectoor-jobs'),
+      value: '_connectoor_jobs_jobtype'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Employment Duration', 'connectoor-jobs'),
+      value: '_connectoor_jobs_employment_duration'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Experience', 'connectoor-jobs'),
+      value: '_connectoor_jobs_experience'
+    }],
     onChange: value => setAttributes({
       field: value
     })
@@ -259,7 +290,9 @@ const MetaBox = ({
   metaFields,
   setMetaFields
 }) => {
-  if ('connectoor_jobs' !== postType) return null;
+  if ('connectoor_jobs' !== postType) {
+    return null;
+  }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_edit_post__WEBPACK_IMPORTED_MODULE_4__.PluginDocumentSettingPanel, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Job Information', 'connectoor-jobs'),
     icon: "businessman",
@@ -423,7 +456,6 @@ const {
  * Function to register an individual block.
  *
  * @param {Object} block The block to be registered.
- *
  */
 
 (0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('connectoor-jobs-job-metadata', {
@@ -434,7 +466,6 @@ const {
  * Function to register an individual block.
  *
  * @param {Object} block The block to be registered.
- *
  */
 const registerBlock = block => {
   if (!block) {

@@ -18,9 +18,9 @@ import {
 } from '@wordpress/components';
 
 
-import { Component, render } from '@wordpress/element';
+import { Component, createRoot } from '@wordpress/element';
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 
 class App extends Component {
 	state = {};
@@ -32,6 +32,8 @@ class App extends Component {
 			brandingColor: '',
 			saveSettingsIsLoading: false,
 			settingsSaved: false,
+			saveSettingsStatus: '',
+			saveSettingsMessage: '',
 			isAPILoaded: false,
 		};
 	}
@@ -47,8 +49,19 @@ class App extends Component {
 						( response ) => {
 							this.setState(
 								{
-									brandingColor: response[ '_connectoor_jobs_branding_color' ],
+									brandingColor: response._connectoor_jobs_branding_color,
 									isAPILoaded: true,
+								}
+							);
+						}
+					).catch(
+						() => {
+							this.setState(
+								{
+									isAPILoaded: true,
+									settingsSaved: true,
+									saveSettingsStatus: 'error',
+									saveSettingsMessage: __( 'Settings could not be loaded', 'connectoor-jobs' ),
 								}
 							);
 						}
@@ -63,6 +76,7 @@ class App extends Component {
 			brandingColor,
 			saveSettingsIsLoading,
 			saveSettingsStatus,
+			saveSettingsMessage,
 			settingsSaved,
 			isAPILoaded,
 		} = this.state;
@@ -103,8 +117,12 @@ class App extends Component {
 									<div
 										dangerouslySetInnerHTML={ {
 											// eslint-disable-next-line no-undef
-											// translators: %s: URL to the Connectoor Jobs Pro page.
-											__html: sprintf( __( 'Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs' ), 'https://www.connectoor.com/wordpress-plugin' )
+
+											__html: sprintf(
+												// translators: %s: URL to the Connectoor Jobs Pro page.
+												__( 'Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs' ),
+												'https://www.connectoor.com/wordpress-plugin'
+											)
 										} }
 									></div>
 								</BaseControl.VisualLabel>
@@ -126,7 +144,7 @@ class App extends Component {
 										color={ brandingColor }
 										help={ __( 'Select a branding color', 'connectoor-jobs' ) }
 										label={ __( 'Branding Color', 'connectoor-jobs' ) }
-										onChange={ ( brandingColor ) => this.setState( { brandingColor } ) }
+										onChange={ ( color ) => this.setState( { brandingColor: color } ) }
 										enableAlpha
 										defaultValue="blue"
 									/>
@@ -139,6 +157,7 @@ class App extends Component {
 							className="branding-color"
 							isPrimary
 							isLarge
+							disabled={ saveSettingsIsLoading }
 							onClick={
 								this.saveSettings
 							}
@@ -150,9 +169,7 @@ class App extends Component {
 						{ !saveSettingsIsLoading && settingsSaved &&
 							<div className={ `connectoor-jobs components-notice is-${ saveSettingsStatus }` }>
 								<div className="connectoor-jobs components-notice__content">
-									{
-										__( 'Settings saved', 'connectoor-jobs' )
-									}
+									{ saveSettingsMessage }
 								</div>
 							</div>
 						}
@@ -167,36 +184,43 @@ class App extends Component {
 			brandingColor
 		} = this.state;
 
-		console.log( brandingColor );
 		const settings = new api.models.Settings(
 			{
-				[ '_connectoor_jobs_branding_color' ]: brandingColor,
+				_connectoor_jobs_branding_color: brandingColor,
 			}
 		);
 
 		this.setState( {
 			saveSettingsIsLoading: true,
-		} )
+			settingsSaved: false,
+			saveSettingsStatus: '',
+			saveSettingsMessage: '',
+		} );
 
 		settings.save().then(
-			( res ) => {
+			() => {
 				this.setState(
 					{
 						saveSettingsIsLoading: false,
 						settingsSaved: true,
+						saveSettingsStatus: 'success',
+						saveSettingsMessage: __( 'Settings saved', 'connectoor-jobs' ),
+					}
+				);
+			}
+		).catch(
+			() => {
+				this.setState(
+					{
+						saveSettingsIsLoading: false,
+						settingsSaved: true,
+						saveSettingsStatus: 'error',
+						saveSettingsMessage: __( 'Settings could not be saved', 'connectoor-jobs' ),
 					}
 				);
 			}
 		)
 	}
-
-	loginCredentials = () => {
-
-		this.setState( {
-			loginConnectionIsLoading: true,
-		} )
-	}
-
 }
 
 document.addEventListener(
@@ -204,10 +228,7 @@ document.addEventListener(
 		const htmlOutput = document.getElementById( 'connectoor-jobs-settings' );
 
 		if ( htmlOutput ) {
-			render(
-				<App/>,
-				htmlOutput
-			);
+			createRoot( htmlOutput ).render( <App/> );
 		}
 	}
 );

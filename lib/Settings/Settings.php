@@ -36,11 +36,41 @@ class Settings {
 			'_connectoor_jobs_branding_color',
 			[
 				'type'              => 'string',
-				'show_in_rest'      => true,
-				'sanitize_callback' => 'sanitize_text_field',
+				'show_in_rest'      => [
+					'schema' => [
+						'type'    => 'string',
+						'pattern' => '^$|^#([A-Fa-f0-9]{3,4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$',
+					],
+				],
+				'sanitize_callback' => [ $this, 'sanitize_branding_color' ],
 				'default'           => '',
 			]
 		);
+	}
+
+	/**
+	 * Sanitize the branding color setting.
+	 *
+	 * @param string $color Branding color.
+	 *
+	 * @return string
+	 */
+	public function sanitize_branding_color( $color ) {
+		if ( ! is_string( $color ) ) {
+			return '';
+		}
+
+		$color = trim( $color );
+
+		if ( '' === $color ) {
+			return '';
+		}
+
+		if ( preg_match( '/^#([A-Fa-f0-9]{3,4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/', $color ) ) {
+			return strtolower( $color );
+		}
+
+		return '';
 	}
 
 	/**
@@ -60,6 +90,10 @@ class Settings {
 	 * Render the options page
 	 */
 	public function options_page() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'connectoor-jobs' ) );
+		}
+
 		?>
 		<div id="connectoor-jobs-settings"></div>
 		<?php

@@ -9,10 +9,13 @@
 		"max-len": [
 			"error",
 			{
-				"code": 160
+				"code": 260,
+				"ignoreComments": true,
+				"ignoreUrls": true
 			}
 		],
-		"prettier/prettier": 0
+		"prettier/prettier": 0,
+		"import/no-unresolved": ["error", { "ignore": ["^@wordpress/"] }]
 	},
 	"overrides": [
 		{
@@ -32,11 +35,13 @@
 	],
 	"settings": {
 		"import/core-modules": [
+			"@wordpress/api",
 			"@wordpress/block-editor",
 			"@wordpress/components",
 			"@wordpress/compose",
 			"@wordpress/data",
 			"@wordpress/editor",
+			"@wordpress/edit-post",
 			"@wordpress/element",
 			"@wordpress/i18n",
 			"@wordpress/primitives"

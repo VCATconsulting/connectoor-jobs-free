@@ -2,9 +2,9 @@
 
 Contributors: VCATconsulting, shogathu, nida78
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -100,6 +100,17 @@ The current version of our recruiting software, Connectoor, is specifically deve
 
 
 == Changelog ==
+
+= 1.4.0 =
+
+* Improve frontend job search with filtered autocomplete results and title selection.
+* Keep AJAX search results inside existing Query Loop taxonomy filters.
+* Improve sanitization and escaping for job meta fields and AJAX-rendered job output.
+* Add allowlist handling for rendered job meta fields.
+* Improve raw date migration performance and capability checks.
+* Reduce unnecessary frontend asset loading on pages without the job search block.
+* Improve admin quick link count query and escaping.
+* Update editor controls and JavaScript lint compatibility.
 
 = 1.3.0 =
 

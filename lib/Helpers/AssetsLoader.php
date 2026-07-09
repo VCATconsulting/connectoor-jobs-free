@@ -216,6 +216,10 @@ class AssetsLoader {
 	 * Enqueue the frontend assets.
 	 */
 	public function wp_enqueue_scripts() {
+		if ( ! is_singular() || ! has_block( 'connectoor-jobs/job-search', get_post() ) ) {
+			return;
+		}
+
 		wp_enqueue_script( 'connectoor-jobs-frontend' );
 		wp_enqueue_style( 'connectoor-jobs-frontend' );
 		wp_enqueue_script( 'jquery' );

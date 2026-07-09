@@ -6,7 +6,7 @@ import { PanelRow, TextControl, ToggleControl } from '@wordpress/components';
 
 const MetaBox = ( { postType, metaFields, setMetaFields } ) => {
 
-	if ( 'connectoor_jobs' !== postType ) return null;
+	if ( 'connectoor_jobs' !== postType ) { return null; }
 
 	return (
 		<PluginDocumentSettingPanel

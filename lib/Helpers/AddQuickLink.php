@@ -93,8 +93,13 @@ class AddQuickLink {
 			global $wp_query;
 
 			$query = [
-				'post_type'  => 'connectoor_jobs',
-				'meta_query' => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'post_type'              => 'connectoor_jobs',
+				'post_status'            => 'any',
+				'posts_per_page'         => 1,
+				'fields'                 => 'ids',
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+				'meta_query'             => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					'relation' => 'OR',
 					[
 						'key'     => '_connectoor_jobs_referencenumber',
@@ -111,12 +116,14 @@ class AddQuickLink {
 			$result                  = new \WP_Query( $query );
 			$class                   = ( isset( $wp_query->query_vars['connectoor_jobs_add_type'] ) && 'manually_added' === $wp_query->query_vars['connectoor_jobs_add_type'] ) ? 'current' : '';
 			$views['manually_added'] = sprintf(
-			// translators: %1$s: admin url link, %2$s: class string, %3$d: number of manually added jobs.
-				__( '<a href="%1$s" class="%2$s">Manually jobs (%3$d)</a>', 'connectoor-jobs' ),
-				admin_url( 'edit.php?post_type=connectoor_jobs&connectoor_jobs_add_type=manually_added' ),
-				$class,
-				$result->found_posts
+				// translators: %1$s: admin url link, %2$s: class string, %3$d: number of manually added jobs.
+				'<a href="%1$s" class="%2$s">%3$s (%4$d)</a>',
+				esc_url( admin_url( 'edit.php?post_type=connectoor_jobs&connectoor_jobs_add_type=manually_added' ) ),
+				esc_attr( $class ),
+				esc_html__( 'Manually jobs', 'connectoor-jobs' ),
+				absint( $result->found_posts )
 			);
+
 		}
 
 		return $views;

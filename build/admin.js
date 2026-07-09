@@ -211,6 +211,8 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       brandingColor: '',
       saveSettingsIsLoading: false,
       settingsSaved: false,
+      saveSettingsStatus: '',
+      saveSettingsMessage: '',
       isAPILoaded: false
     };
   }
@@ -223,8 +225,15 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       if (isAPILoaded === false) {
         this.settings.fetch().then(response => {
           this.setState({
-            brandingColor: response['_connectoor_jobs_branding_color'],
+            brandingColor: response._connectoor_jobs_branding_color,
             isAPILoaded: true
+          });
+        }).catch(() => {
+          this.setState({
+            isAPILoaded: true,
+            settingsSaved: true,
+            saveSettingsStatus: 'error',
+            saveSettingsMessage: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Settings could not be loaded', 'connectoor-jobs')
           });
         });
       }
@@ -235,6 +244,7 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       brandingColor,
       saveSettingsIsLoading,
       saveSettingsStatus,
+      saveSettingsMessage,
       settingsSaved,
       isAPILoaded
     } = this.state;
@@ -265,8 +275,10 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       dangerouslySetInnerHTML: {
         // eslint-disable-next-line no-undef
+
+        __html: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.sprintf)(
         // translators: %s: URL to the Connectoor Jobs Pro page.
-        __html: sprintf((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs'), 'https://www.connectoor.com/wordpress-plugin')
+        (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Use all the benefits, automatic job advertisements, AI and more in the <strong>PRO version</strong> and our Connectoor recruiting software. <a href="%s">Find out more.</a>', 'connectoor-jobs'), 'https://www.connectoor.com/wordpress-plugin')
       }
     })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Branding Settings', 'connectoor-jobs'),
@@ -277,8 +289,8 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       color: brandingColor,
       help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Select a branding color', 'connectoor-jobs'),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Branding Color', 'connectoor-jobs'),
-      onChange: brandingColor => this.setState({
-        brandingColor
+      onChange: color => this.setState({
+        brandingColor: color
       }),
       enableAlpha: true,
       defaultValue: "blue"
@@ -286,41 +298,48 @@ class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Component {
       className: "branding-color",
       isPrimary: true,
       isLarge: true,
+      disabled: saveSettingsIsLoading,
       onClick: this.saveSettings
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Save Data', 'connectoor-jobs')), saveSettingsIsLoading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null), !saveSettingsIsLoading && settingsSaved && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `connectoor-jobs components-notice is-${saveSettingsStatus}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "connectoor-jobs components-notice__content"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Settings saved', 'connectoor-jobs'))))));
+    }, saveSettingsMessage)))));
   }
   saveSettings = () => {
     const {
       brandingColor
     } = this.state;
-    console.log(brandingColor);
     const settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_3___default().models).Settings({
-      ['_connectoor_jobs_branding_color']: brandingColor
+      _connectoor_jobs_branding_color: brandingColor
     });
     this.setState({
-      saveSettingsIsLoading: true
+      saveSettingsIsLoading: true,
+      settingsSaved: false,
+      saveSettingsStatus: '',
+      saveSettingsMessage: ''
     });
-    settings.save().then(res => {
+    settings.save().then(() => {
       this.setState({
         saveSettingsIsLoading: false,
-        settingsSaved: true
+        settingsSaved: true,
+        saveSettingsStatus: 'success',
+        saveSettingsMessage: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Settings saved', 'connectoor-jobs')
       });
-    });
-  };
-  loginCredentials = () => {
-    this.setState({
-      loginConnectionIsLoading: true
+    }).catch(() => {
+      this.setState({
+        saveSettingsIsLoading: false,
+        settingsSaved: true,
+        saveSettingsStatus: 'error',
+        saveSettingsMessage: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Settings could not be saved', 'connectoor-jobs')
+      });
     });
   };
 }
 document.addEventListener('DOMContentLoaded', () => {
   const htmlOutput = document.getElementById('connectoor-jobs-settings');
   if (htmlOutput) {
-    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, null), htmlOutput);
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createRoot)(htmlOutput).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, null));
   }
 });
 })();

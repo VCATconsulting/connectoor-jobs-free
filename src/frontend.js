@@ -2,6 +2,7 @@ import './scss/_style.scss';
 import 'jquery-ui-dist/jquery-ui.css';
 import { __ } from '@wordpress/i18n';
 
+/* global jQuery, searchVars */
 
 //Connectoor Jobs Plugin - Klickbare Index li-Container
 document.addEventListener( 'DOMContentLoaded', () => {
@@ -41,11 +42,14 @@ jQuery( document ).ready( function ( $ ) {
 	const $input = $( '#connectoor-job-search' );
 	const defaultPerPage = 10;
 
-	if ( $input.length < 1 ) return;
+	if ( $input.length < 1 ) {
+		return;
+	}
 
 	let suppressNextChange = false;
+
 	$input.autocomplete( {
-		source: function ( request, response ) {
+		source( request, response ) {
 			$.ajax( {
 				url: searchVars.ajaxUrl,
 				dataType: 'json',
@@ -55,7 +59,7 @@ jQuery( document ).ready( function ( $ ) {
 					categories: searchVars.categoriesTerms,
 					nonce: searchVars.nonce
 				},
-				success: function ( data ) {
+				success( data ) {
 					const seenTitles = new Set();
 
 					const uniqueSuggestions = data.results.filter( post => {
@@ -67,6 +71,8 @@ jQuery( document ).ready( function ( $ ) {
 					} ).map( post => ( {
 						label: post.post_title,
 						value: post.post_title,
+						searchTerm: request.term,
+						selectedTitle: post.post_title,
 						postId: post.ID
 					} ) );
 
@@ -75,13 +81,14 @@ jQuery( document ).ready( function ( $ ) {
 			} );
 		},
 		minLength: 2,
-		select: function ( event, ui ) {
+		select( event, ui ) {
 			// Auswahl wurde getroffen (text bleibt im Feld)
 			suppressNextChange = true;
-			const searchTerm = ui.item.value;
-			$input.val(searchTerm);
+			const searchTerm = ui.item.searchTerm || ui.item.value;
+			const selectedTitle = ui.item.selectedTitle || '';
+			$input.val( searchTerm );
 			// Ergebnisse rendern
-			loadJobResults( searchTerm, 1, defaultPerPage );
+			loadJobResults( searchTerm, 1, defaultPerPage, selectedTitle );
 		}
 	} );
 
@@ -92,42 +99,45 @@ jQuery( document ).ready( function ( $ ) {
 			return;
 		}
 		if ( e.keyCode === 13 || $input.val().length >= 3 ) {
-			loadJobResults( $input.val(), 1, defaultPerPage );
+			loadJobResults( $input.val(), 1, defaultPerPage, '' );
 		}
 	} );
 
 	let currentRequest = null;
+	let currentSelectedTitle = '';
 
 	// Ajax-Suchergebnisse laden
-	function loadJobResults( searchTerm, page = 1, perPage = 10 ) {
+	function loadJobResults( searchTerm, page = 1, perPage = 10, selectedTitle = '' ) {
+		currentSelectedTitle = selectedTitle;
 
 		if ( currentRequest !== null ) {
 			currentRequest.abort();
 		}
-		const container = $( '.wp-block-query' );
+		const container = $input.closest( '.wp-block-group' ).find( '.wp-block-query' ).first();
 		container.empty();
 
-
 		// Reload the query loop based on the search term.
-		$.ajax( {
+		currentRequest = $.ajax( {
 			url: searchVars.ajaxUrl,
 			dataType: 'json',
 			method: 'GET',
 			data: {
 				action: 'connectoor_jobs_search_jobs',
 				q: searchTerm,
+				selected_title: selectedTitle,
 				nonce: searchVars.nonce,
 				categories: searchVars.categoriesTerms,
-				page: page,
+				page,
 				per_page: perPage,
 				page_id: searchVars.page_id,
 			},
-			success: function ( data ) {
+			success( data ) {
 				currentRequest = null; // Reset if successfull.
 				const ul = $( '<ul class="branding-color wp-block-post-template"></ul>' );
 
 				data.results.forEach( function ( post ) {
-					const li = $( `<li class="connectoor_jobs">${ post.html }</li>` );
+					const li = $( '<li class="connectoor_jobs"></li>' );
+					li.html( post.html );
 					ul.append( li );
 				} );
 
@@ -137,15 +147,15 @@ jQuery( document ).ready( function ( $ ) {
 				renderPagination( container, data.max_pages, data.paged );
 
 				// Make li clickable.
-				$( document ).on( 'click', 'ul.branding-color li.connectoor_jobs', function ( e ) {
-					if ( e.target.tagName.toLowerCase() !== 'a' ) {
-						window.location.href = $( this ).find( 'a' ).attr( 'href' );
-					}
-				} );
-
-
+				$( document )
+					.off( 'click', 'ul.branding-color li.connectoor_jobs' )
+					.on( 'click', 'ul.branding-color li.connectoor_jobs', function ( e ) {
+						if ( e.target.tagName.toLowerCase() !== 'a' ) {
+							window.location.href = $( this ).find( 'a' ).attr( 'href' );
+						}
+					} );
 			},
-			error: function () {
+			error() {
 				currentRequest = null; // Rest if error.
 			}
 		} );
@@ -154,7 +164,9 @@ jQuery( document ).ready( function ( $ ) {
 		function renderPagination( container, maxPages, currentPage ) {
 		// Remove old pagination
 			container.find( '.wp-block-query-pagination' ).remove();
-			if ( maxPages < 2 ) return;
+			if ( maxPages < 2 ) {
+				return;
+			}
 
 			const nav = $( `
     <nav class="wp-block-query-pagination is-layout-flex wp-block-query-pagination-is-layout-flex"
@@ -177,7 +189,7 @@ jQuery( document ).ready( function ( $ ) {
 			const numbers = $( `<div class="wp-block-query-pagination-numbers"></div>` );
 			const total = maxPages;
 			const delta = 2;
-			let range = [];
+			const range = [];
 			for ( let i = 1; i <= total; i++ ) {
 				if (
 					i === 1 ||
@@ -228,7 +240,7 @@ jQuery( document ).ready( function ( $ ) {
 					const page = href.match( /query-1-page=(\d+)/ )
 						? parseInt( href.match( /query-1-page=(\d+)/ )[ 1 ], 10 )
 						: 1;
-					loadJobResults( $( '#connectoor-job-search' ).val(), page, defaultPerPage );
+					loadJobResults( $( '#connectoor-job-search' ).val(), page, defaultPerPage, currentSelectedTitle );
 				} );
 		}
 	}

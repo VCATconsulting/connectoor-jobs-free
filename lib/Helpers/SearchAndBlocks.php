@@ -57,7 +57,26 @@ class SearchAndBlocks {
 			return '';
 		}
 
-		$field = $attributes['field'];
+		$field          = sanitize_key( $attributes['field'] );
+		$allowed_fields = apply_filters(
+			'connectoor_jobs_allowed_meta_field_block_fields',
+			[
+				'_connectoor_jobs_begin',
+				'_connectoor_jobs_company',
+				'_connectoor_jobs_location_address',
+				'_connectoor_jobs_city',
+				'_connectoor_jobs_state',
+				'_connectoor_jobs_postalcode',
+				'_connectoor_jobs_country',
+				'_connectoor_jobs_jobtype',
+				'_connectoor_jobs_employment_duration',
+				'_connectoor_jobs_experience',
+			]
+		);
+
+		if ( ! in_array( $field, $allowed_fields, true ) ) {
+			return '';
+		}
 
 		if ( '_connectoor_jobs_begin' === $field ) {
 			$deadline         = get_post_meta( get_the_ID(), '_connectoor_jobs_deadline', true );
@@ -182,22 +201,39 @@ class SearchAndBlocks {
 		 * Get the search query and the categories.
 		 */
 		$search_query = sanitize_text_field( wp_unslash( $_GET['q'] ) );
+		$search_query = mb_substr( $search_query, 0, 100 );
 
-		$page_id  = isset( $_GET['page_id'] ) ? (int) $_GET['page_id'] : 0;
-		$paged    = isset( $_GET['page'] ) ? (int) $_GET['page'] : 1;
-		$per_page = isset( $_GET['per_page'] ) ? (int) $_GET['per_page'] : 10;
+		$selected_title = isset( $_GET['selected_title'] ) ? sanitize_text_field( wp_unslash( $_GET['selected_title'] ) ) : '';
+		$selected_title = mb_substr( $selected_title, 0, 200 );
+
+		$page_id      = isset( $_GET['page_id'] ) ? absint( $_GET['page_id'] ) : 0;
+		$paged        = isset( $_GET['page'] ) ? max( 1, absint( $_GET['page'] ) ) : 1;
+		$has_per_page = isset( $_GET['per_page'] );
+		$per_page     = $has_per_page ? max( 1, absint( $_GET['per_page'] ) ) : -1;
+
 
 		// Parse category filters from block context.
 		$categories_query = [];
 		if ( isset( $_GET['categories'] ) && is_array( $_GET['categories'] ) ) {
-			$categories_raw = wp_unslash( $_GET['categories'] ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$categories_raw     = wp_unslash( $_GET['categories'] ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+			if ( isset( $categories_raw['include'] ) && is_array( $categories_raw['include'] ) ) {
+				$categories_raw = $categories_raw['include'];
+			}
+
+			$allowed_taxonomies = [ 'connectoor_tax_job_category', 'connectoor_tax_job_emp_type' ];
 
 			/*
 			 * Sanitize the categories.
 			 */
 			foreach ( $categories_raw as $category => $cat_ids ) {
-				$category                      = sanitize_text_field( $category );
-				$categories_query[ $category ] = array_unique( array_map( 'intval', $cat_ids ) );
+				$category = sanitize_key( $category );
+
+				if ( ! in_array( $category, $allowed_taxonomies, true ) || ! is_array( $cat_ids ) ) {
+					continue;
+				}
+
+				$categories_query[ $category ] = array_values( array_unique( array_map( 'absint', $cat_ids ) ) );
 			}
 		}
 
@@ -332,6 +368,20 @@ class SearchAndBlocks {
 		}
 
 		/*
+		 * Search for selected title.
+		 */
+		if ( '' !== $selected_title && ! empty( $post_ids ) ) {
+			$post_ids = array_values(
+				array_filter(
+					$post_ids,
+					static function ( $post_id ) use ( $selected_title ) {
+						return get_the_title( $post_id ) === $selected_title;
+					}
+				)
+			);
+		}
+
+		/*
 		 * Get the final data.
 		 */
 		if ( empty( $post_ids ) ) {
@@ -375,7 +425,7 @@ class SearchAndBlocks {
 					'ID'         => get_the_ID(),
 					'post_title' => get_the_title(),
 					'link'       => get_the_permalink(),
-					'html'       => $this->render_connectoor_jobs_post_template( get_the_ID(), $page_id ),
+					'html'       => wp_kses_post( $this->render_connectoor_jobs_post_template( get_the_ID(), $page_id ) ),
 				];
 			}
 		}
@@ -383,14 +433,14 @@ class SearchAndBlocks {
 		/*
 		 * Prepare the response.
 		 */
-		$response = [
-			'results'     => $results,
-			'total_found' => $query_final->found_posts,
-			'max_pages'   => $query_final->max_num_pages,
-			'paged'       => $paged,
-		];
-
-		wp_send_json( $response );
+		wp_send_json(
+			[
+				'results'     => $results,
+				'total_found' => $query_final->found_posts,
+				'max_pages'   => $query_final->max_num_pages,
+				'paged'       => $paged,
+			]
+		);
 	}
 
 	/**
@@ -401,62 +451,30 @@ class SearchAndBlocks {
 	 * @return array
 	 */
 	private function get_connectoor_jobs_tax_query( $categories_query ) {
+		if ( ! is_array( $categories_query ) ) {
+			return [];
+		}
+
 		$tax_query = [];
-
-		/*
-		 * Check if the categories are set.
-		 */
-		if ( is_array( $categories_query ) ) {
-			if ( ( isset( $categories_query['connectoor_tax_job_category'][0] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) ||
-				( isset( $categories_query['connectoor_tax_job_emp_type'][0] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) ) {
-				/*
-				 * Check if the connectoor_tax_job_category category is set.
-				 */
-				if ( isset( $categories_query['connectoor_tax_job_category'][0] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) {
-					$tax_query[] = [
-						[
-							'taxonomy' => 'connectoor_tax_job_category',
-							'terms'    => $categories_query['connectoor_tax_job_category'],
-							'field'    => 'term_id',
-						],
-					];
-				}
-
-				/*
-				 * Check if the connectoor_tax_job_emp_type category is set.
-				 */
-				if ( isset( $categories_query['connectoor_tax_job_emp_type'][0] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) {
-					$tax_query[] = [
-						[
-							'taxonomy' => 'connectoor_tax_job_emp_type',
-							'terms'    => $categories_query['connectoor_tax_job_emp_type'],
-							'field'    => 'term_id',
-						],
-					];
-				}
+		foreach ( [ 'connectoor_tax_job_category', 'connectoor_tax_job_emp_type' ] as $taxonomy ) {
+			if ( empty( $categories_query[ $taxonomy ] ) || ! is_array( $categories_query[ $taxonomy ] ) ) {
+				continue;
 			}
 
-			/*
-			 * Check if both categories are set.
-			 */
-			if ( ( isset( $categories_query['connectoor_tax_job_category'][0] ) && 0 !== $categories_query['connectoor_tax_job_category'][0] ) &&
-				( isset( $categories_query['connectoor_tax_job_emp_type'][0] ) && 0 !== $categories_query['connectoor_tax_job_emp_type'][0] ) ) {
-				$tax_query[] = [
-					[
-						'taxonomy' => 'connectoor_tax_job_category',
-						'terms'    => $categories_query['connectoor_tax_job_category'],
-						'field'    => 'term_id',
-					],
-					[
-						'taxonomy' => 'connectoor_tax_job_emp_type',
-						'terms'    => $categories_query['connectoor_tax_job_emp_type'],
-						'field'    => 'term_id',
-					],
-				];
+			$terms = array_values( array_filter( array_map( 'absint', $categories_query[ $taxonomy ] ) ) );
+			if ( empty( $terms ) ) {
+				continue;
 			}
-			if ( ! empty( $tax_query ) ) {
-				$tax_query['relation'] = 'AND';
-			}
+
+			$tax_query[] = [
+				'taxonomy' => $taxonomy,
+				'terms'    => $terms,
+				'field'    => 'term_id',
+			];
+		}
+
+		if ( ! empty( $tax_query ) ) {
+			$tax_query['relation'] = 'AND';
 		}
 
 		return $tax_query;
@@ -471,12 +489,18 @@ class SearchAndBlocks {
 	 * @return string
 	 */
 	public function render_connectoor_jobs_post_template( int $post_id, int $block_page_id ) {
+		static $page_blocks = [];
+
 		$page_post = get_post( $block_page_id );
 		if ( ! $page_post ) {
 			return '';
 		}
 
-		$blocks  = parse_blocks( $page_post->post_content );
+		if ( ! isset( $page_blocks[ $block_page_id ] ) ) {
+			$page_blocks[ $block_page_id ] = parse_blocks( $page_post->post_content );
+		}
+
+		$blocks  = $page_blocks[ $block_page_id ];
 		$pattern = 'connectoor-jobs/job-custom-post-query-loop';
 
 		$templates = $this->connectoor_jobs_find_post_templates_in_blocks( $blocks, $post_id, $pattern, true );
